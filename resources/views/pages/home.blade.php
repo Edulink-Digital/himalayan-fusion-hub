@@ -15,22 +15,21 @@
                 <a class="btn btn-outline" href="{{ route('book') }}?type=vip">Book VIP</a>
             </div>
         </div>
-        <div class="deck rv" style="--d:2" aria-hidden="true">
-            <div class="halo"></div>
-            <div class="vinyl"></div>
-            <div class="label">HFH<br>Live</div>
-            <div class="eqbig">@for ($i = 0; $i < 22; $i++)<i style="animation-delay:-{{ ($i * 0.17) % 1.1 }}s;animation-duration:{{ 0.7 + (($i * 7) % 9) / 10 }}s"></i>@endfor</div>
+        <div class="deck rv" style="--d:2">
+            <div class="halo" aria-hidden="true"></div>
+            <div class="frame"><img src="{{ asset('images/hero-dj.webp') }}" width="900" height="1100" alt="DJ wearing headphones mixing on the decks" fetchpriority="high"></div>
+            <div class="eqbig" aria-hidden="true">@for ($i = 0; $i < 22; $i++)<i style="animation-delay:-{{ ($i * 0.17) % 1.1 }}s;animation-duration:{{ 0.7 + (($i * 7) % 9) / 10 }}s"></i>@endfor</div>
         </div>
     </div>
 </section>
 
 <section class="sec" id="about" aria-labelledby="about-title">
     <div class="wrap about">
-        <div class="collage rv" aria-hidden="true">
-            <div class="pic p1"><span class="ph">Dance floor</span></div>
-            <div class="pic p2"><span class="ph">Karaoke</span></div>
-            <div class="pic p3"><span class="ph">Cocktails</span></div>
-            <span class="shape sh-ring"></span><span class="shape sh-tri"></span>
+        <div class="collage rv">
+            <div class="pic p1"><img src="{{ asset('images/about-dance.webp') }}" width="700" height="800" loading="lazy" alt="Crowd in red laser light on the dance floor"></div>
+            <div class="pic p2"><img src="{{ asset('images/about-mic.webp') }}" width="700" height="800" loading="lazy" alt="Vintage microphone against a blue backdrop"></div>
+            <div class="pic p3"><img src="{{ asset('images/about-bar.webp') }}" width="800" height="560" loading="lazy" alt="Cocktail being poured at a lit bar"></div>
+            <span class="shape sh-ring" aria-hidden="true"></span><span class="shape sh-tri" aria-hidden="true"></span>
         </div>
         <div>
             <div class="title title-l rv"><span class="ghost">About us</span><h2 id="about-title">We are The Best in The Field</h2><span class="rule"></span></div>
@@ -87,7 +86,8 @@
         </div>
         <div class="gallery" data-gallery>
             @foreach (config('hfh.gallery') as $g)
-                <div class="shot" data-cat="{{ $g[0] }}" data-label="{{ $g[1] }}" style="--ar:{{ $g[2] }};--art:{{ $g[3] }}" role="img" aria-label="{{ $g[1] }} (photo coming soon)"></div>
+                @php [$w, $h] = explode('/', $g[2]); @endphp
+                <figure class="shot" data-cat="{{ $g[0] }}" data-label="{{ $g[1] }}" style="--ar:{{ $g[2] }}"><img src="{{ asset('images/'.$g[3].'.webp') }}" width="{{ $w }}" height="{{ $h }}" loading="lazy" alt="{{ $g[4] }}"></figure>
             @endforeach
         </div>
     </div>

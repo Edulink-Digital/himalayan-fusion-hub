@@ -33,14 +33,17 @@ return [
         ['label' => 'Contact', 'route' => 'home', 'url' => '/#contact'],
     ],
 
-    // Gallery tiles are light-art placeholders. Swap for real photos (resources/views/pages/home.blade.php).
+    // Photos: Unsplash License (free to use). Sources listed in public/images/CREDITS.md.
     'gallery' => [
-        ['Dancing', 'Dance floor', '1', 'radial-gradient(70% 60% at 30% 20%, #db5eff, transparent 70%), radial-gradient(60% 60% at 80% 90%, #1384cc, transparent 70%), #1a1040'],
-        ['Drinks', 'Signature pours', '1.25', 'radial-gradient(70% 60% at 70% 20%, #ffd24a, transparent 65%), radial-gradient(60% 60% at 20% 90%, #ff5ea8, transparent 70%), #160f38'],
-        ['Karaoke', 'Karaoke lounge', '.8', 'radial-gradient(70% 60% at 50% 10%, #38e1ff, transparent 65%), radial-gradient(60% 60% at 80% 90%, #9f23c1, transparent 70%), #12113a'],
-        ['Music', 'DJ booth', '1.1', 'radial-gradient(70% 70% at 20% 30%, #9f23c1, transparent 65%), radial-gradient(60% 60% at 90% 80%, #3a53d8, transparent 70%), #0f0c2c'],
-        ['Food', 'Momo & bites', '.9', 'radial-gradient(70% 60% at 60% 20%, #ff8a4a, transparent 65%), radial-gradient(60% 60% at 10% 90%, #9f23c1, transparent 70%), #1a1040'],
-        ['Dancing', 'Lights on', '1.2', 'radial-gradient(70% 60% at 40% 20%, #3a53d8, transparent 65%), radial-gradient(60% 60% at 90% 90%, #db5eff, transparent 70%), #130f35'],
+        ['Dancing', 'Dance floor', '700/900', 'gal-dance-1', 'Friends dancing with their hands up on a night out'],
+        ['Drinks', 'Signature pours', '800/650', 'gal-drink-2', 'Friends toasting with cocktails at a dim bar'],
+        ['Karaoke', 'Karaoke lounge', '700/900', 'gal-karaoke', 'Microphone on a stand ready for karaoke'],
+        ['Music', 'DJ booth', '800/660', 'gal-music-1', 'DJ hands on a mixer with coloured lights'],
+        ['Food', 'Momo and bites', '800/720', 'gal-food-1', 'Platter of momo dumplings and fried snacks'],
+        ['Dancing', 'Lights on', '800/800', 'gal-dance-2', 'Crowd dancing and smiling in a busy club'],
+        ['Drinks', 'Behind the bar', '700/800', 'gal-drink-1', 'Bartender pouring a drink over ice'],
+        ['Food', 'Steamed momo', '800/800', 'gal-food-2', 'Steamed dumplings in a bamboo basket'],
+        ['Music', 'Resident DJ', '700/820', 'gal-music-2', 'DJ wearing headphones behind the decks'],
     ],
 
     'booking_types' => [

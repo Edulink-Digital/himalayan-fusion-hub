@@ -1,13 +1,9 @@
-@php $arts = [
-    'radial-gradient(70% 60% at 30% 20%, #db5eff, transparent 70%), radial-gradient(60% 60% at 80% 90%, #1384cc, transparent 70%), #1a1040',
-    'radial-gradient(70% 60% at 70% 20%, #ffd24a, transparent 65%), radial-gradient(60% 60% at 20% 90%, #ff5ea8, transparent 70%), #160f38',
-    'radial-gradient(70% 60% at 50% 10%, #38e1ff, transparent 65%), radial-gradient(60% 60% at 80% 90%, #9f23c1, transparent 70%), #12113a',
-]; @endphp
+@php $imgs = ['event-friday' => 'Crowd with hands up under bright stage lights', 'event-karaoke' => 'Microphone glowing in warm bokeh light', 'event-private' => 'Warm-lit cocktail bar with hanging bulbs']; $keys = array_keys($imgs); @endphp
 @foreach (array_slice(config('hfh.nights'), 0, $limit ?? 99) as $i => $n)
     <article class="card event rv" style="--d:{{ $i }}">
-        <div class="poster" style="--art:{{ $arts[$i % 3] }}" role="img" aria-label="{{ $n['title'] }} (photo coming soon)"></div>
+        <div class="poster"><img src="{{ asset('images/'.$keys[$i % 3].'.webp') }}" width="800" height="600" loading="lazy" alt="{{ $imgs[$keys[$i % 3]] }}"></div>
         <div>
-            <h3>{{ $n['title'] }}</h3>
+            <{{ $hl ?? 'h3' }}>{{ $n['title'] }}</{{ $hl ?? 'h3' }}>
             <p>{{ $n['blurb'] }}</p>
             <div class="ev-meta">
                 <span><i class="ph-bold ph-calendar-blank" aria-hidden="true"></i>{{ $n['when'] }}</span>

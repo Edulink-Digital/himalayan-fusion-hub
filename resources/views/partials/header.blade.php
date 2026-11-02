@@ -17,9 +17,9 @@
             @endforeach
         </nav>
         <aside>
-            <div class="block"><h3>Find us</h3><address>@foreach (config('hfh.address_lines') as $l)<p>{{ $l }}</p>@endforeach</address></div>
-            <div class="block"><h3>Call</h3><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></div>
-            <div class="block"><h3>Friday</h3><p>Doors open 6:30 pm</p></div>
+            <div class="block"><p class="menu-h">Find us</p><address>@foreach (config('hfh.address_lines') as $l)<p>{{ $l }}</p>@endforeach</address></div>
+            <div class="block"><p class="menu-h">Call</p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></div>
+            <div class="block"><p class="menu-h">Friday</p><p>Doors open 6:30 pm</p></div>
         </aside>
     </div>
 </div>

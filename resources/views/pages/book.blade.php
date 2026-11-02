@@ -9,7 +9,7 @@
 </section>
 <section class="sec" style="padding-top:2rem"><div class="wrap book-wrap">
     <div class="card rv" id="booking-form">@include('partials.booking-form')</div>
-    <aside class="card rv" style="--d:1"><h3>Prefer to call?</h3><span class="rule"></span>
+    <aside class="card rv" style="--d:1"><h2>Prefer to call?</h2><span class="rule"></span>
         <div class="info">
             <div><i class="ph-bold ph-phone" aria-hidden="true"></i><p><strong>Phone</strong><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div>
             <div><i class="ph-bold ph-map-pin" aria-hidden="true"></i><p><strong>Where</strong>{{ config('hfh.address') }}</p></div>
