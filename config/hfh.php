@@ -24,10 +24,23 @@ return [
     ],
 
     'nav' => [
-        ['label' => 'Home', 'route' => 'home'],
-        ['label' => 'Events', 'route' => 'events'],
-        ['label' => 'Menu', 'route' => 'menu'],
-        ['label' => 'Book', 'route' => 'book'],
+        ['label' => 'Home', 'route' => 'home', 'url' => '/'],
+        ['label' => 'About', 'route' => 'home', 'url' => '/#about'],
+        ['label' => 'Events', 'route' => 'events', 'url' => '/events'],
+        ['label' => 'Menu', 'route' => 'menu', 'url' => '/menu'],
+        ['label' => 'Gallery', 'route' => 'home', 'url' => '/#gallery'],
+        ['label' => 'Book a Table', 'route' => 'book', 'url' => '/book'],
+        ['label' => 'Contact', 'route' => 'home', 'url' => '/#contact'],
+    ],
+
+    // Gallery tiles are light-art placeholders. Swap for real photos (resources/views/pages/home.blade.php).
+    'gallery' => [
+        ['Dancing', 'Dance floor', '1', 'radial-gradient(70% 60% at 30% 20%, #db5eff, transparent 70%), radial-gradient(60% 60% at 80% 90%, #1384cc, transparent 70%), #1a1040'],
+        ['Drinks', 'Signature pours', '1.25', 'radial-gradient(70% 60% at 70% 20%, #ffd24a, transparent 65%), radial-gradient(60% 60% at 20% 90%, #ff5ea8, transparent 70%), #160f38'],
+        ['Karaoke', 'Karaoke lounge', '.8', 'radial-gradient(70% 60% at 50% 10%, #38e1ff, transparent 65%), radial-gradient(60% 60% at 80% 90%, #9f23c1, transparent 70%), #12113a'],
+        ['Music', 'DJ booth', '1.1', 'radial-gradient(70% 70% at 20% 30%, #9f23c1, transparent 65%), radial-gradient(60% 60% at 90% 80%, #3a53d8, transparent 70%), #0f0c2c'],
+        ['Food', 'Momo & bites', '.9', 'radial-gradient(70% 60% at 60% 20%, #ff8a4a, transparent 65%), radial-gradient(60% 60% at 10% 90%, #9f23c1, transparent 70%), #1a1040'],
+        ['Dancing', 'Lights on', '1.2', 'radial-gradient(70% 60% at 40% 20%, #3a53d8, transparent 65%), radial-gradient(60% 60% at 90% 90%, #db5eff, transparent 70%), #130f35'],
     ],
 
     'booking_types' => [
@@ -47,6 +60,8 @@ return [
             'blurb' => 'Bollywood, Nepali pop, Afrobeats and house, blended by the DJ until late. Dress sharp, dance harder.',
             'tone' => 'magenta',
             'tag' => 'Dancing',
+            'book' => 'table',
+            'count' => true,
         ],
         [
             'slug' => 'karaoke-nights',
@@ -55,6 +70,7 @@ return [
             'blurb' => 'Hindi, Nepali and English songbooks, a proper sound system and a crowd that cheers every note.',
             'tone' => 'gold',
             'tag' => 'Karaoke',
+            'book' => 'karaoke',
         ],
         [
             'slug' => 'private-hire',
@@ -63,6 +79,7 @@ return [
             'blurb' => 'Take over the floor with your own guest list, menu and playlist. We handle the lights.',
             'tone' => 'violet',
             'tag' => 'Functions',
+            'book' => 'private',
         ],
     ],
 

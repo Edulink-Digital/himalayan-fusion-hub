@@ -1,19 +1,25 @@
 <header class="site-header" data-header>
     <div class="wrap header-row">
         <a class="brand" href="{{ route('home') }}" aria-label="{{ config('hfh.name') }} home">
-            <span class="brand-mark" aria-hidden="true"><i class="ph-bold ph-mountains"></i></span>
-            <span class="brand-text">Himalayan<b>Fusion</b>Hub</span>
+            <strong>HF<span class="mk">H</span><span class="eqmini" aria-hidden="true"><i></i><i></i><i></i></span></strong>
+            <small>Himalayan Fusion Hub</small>
         </a>
-        <nav class="nav" id="nav" aria-label="Primary" data-nav>
-            @foreach (config('hfh.nav') as $item)
-                @if ($item['route'] !== 'book')
-                    <a href="{{ route($item['route']) }}" @class(['is-active' => request()->routeIs($item['route'])]) @if(request()->routeIs($item['route'])) aria-current="page" @endif>{{ $item['label'] }}</a>
-                @endif
-            @endforeach
-            <a class="btn btn-glow nav-cta" href="{{ route('book') }}">Book a table</a>
-        </nav>
-        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav" data-burger>
-            <span></span><span></span>
-        </button>
+        <a class="head-phone" href="tel:{{ config('hfh.phone_href') }}"><i class="ph-bold ph-phone" aria-hidden="true"></i><span>{{ config('hfh.phone') }}</span></a>
+        <a class="btn btn-sm" href="{{ route('book') }}">Book now</a>
+        <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span></span></button>
     </div>
 </header>
+<div class="menu" id="menu" data-menu aria-label="Site menu">
+    <div class="wrap menu-grid">
+        <nav aria-label="Primary">
+            @foreach (config('hfh.nav') as $i => $item)
+                <a style="--i:{{ $i }}" href="{{ url($item['url']) }}" @class(['is-active' => $item['url'] !== '/' && request()->is(ltrim($item['url'], '/')) || ($item['url'] === '/' && request()->is('/'))])>{{ $item['label'] }}</a>
+            @endforeach
+        </nav>
+        <aside>
+            <div class="block"><h3>Find us</h3><address>@foreach (config('hfh.address_lines') as $l)<p>{{ $l }}</p>@endforeach</address></div>
+            <div class="block"><h3>Call</h3><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></div>
+            <div class="block"><h3>Friday</h3><p>Doors open 6:30 pm</p></div>
+        </aside>
+    </div>
+</div>
