@@ -26,6 +26,13 @@
 @include('partials.header')
 <main id="main">@yield('content')</main>
 @include('partials.footer')
+<div class="fab" aria-label="Contact shortcuts">
+    <a class="fab-btn fab-wa" href="https://wa.me/{{ config('hfh.whatsapp') }}?text={{ rawurlencode('Hi '.config('hfh.name').', I have a question about') }}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">@include('partials.icon', ['name' => 'whatsapp-logo'])</a>
+    @if (config('hfh.email'))
+        <a class="fab-btn fab-mail" href="mailto:{{ config('hfh.email') }}" aria-label="Email {{ config('hfh.email') }}">@include('partials.icon', ['name' => 'envelope-simple'])</a>
+    @endif
+    <a class="fab-btn fab-top" href="#main" aria-label="Back to top" data-to-top>@include('partials.icon', ['name' => 'arrow-up'])</a>
+</div>
 @unless (request()->routeIs('book'))
     <nav class="dock" aria-label="Quick actions">
         <a class="btn dock-book" href="{{ route('book') }}">Book a table</a>

@@ -88,6 +88,20 @@
     btn.replaceWith(frame);
   }));
 
+  // back-to-top button: shown once the visitor is a screen down the page
+  const toTop = document.querySelector('[data-to-top]');
+  if (toTop) {
+    let queued = false;
+    const check = () => { queued = false; toTop.classList.toggle('show', window.scrollY > window.innerHeight * .8); };
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(check); } }, { passive: true });
+    check();
+    toTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      document.querySelector('.brand')?.focus({ preventScroll: true });
+    });
+  }
+
   const date = document.querySelector('input[type="date"][data-min-today]');
   if (date) date.min = new Date().toLocaleDateString('en-CA');
 })();

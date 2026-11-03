@@ -56,4 +56,19 @@ class SiteTest extends TestCase
     {
         $this->get('/book?type=vip')->assertSee('value="vip" selected', false);
     }
+
+    public function test_floating_buttons_link_to_whatsapp_and_top(): void
+    {
+        $this->get('/')
+            ->assertSee('https://wa.me/61493964334', false)
+            ->assertSee('data-to-top', false)
+            ->assertDontSee('mailto:', false);
+    }
+
+    public function test_email_button_appears_once_an_address_is_set(): void
+    {
+        config(['hfh.email' => 'hello@example.com']);
+
+        $this->get('/')->assertSee('mailto:hello@example.com', false);
+    }
 }

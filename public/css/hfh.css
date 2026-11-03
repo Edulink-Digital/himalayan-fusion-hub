@@ -317,6 +317,17 @@ ul { list-style: none; margin: 0; padding: 0; }
 .credit a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 4px; }
 .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .4rem; }
 
+/* ---------- floating contact buttons (bottom right) ---------- */
+.fab { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: calc(var(--z-header) - 2); display: flex; flex-direction: column; gap: .7rem; }
+.fab-btn { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; color: #fff; font-size: 1.45rem; box-shadow: 0 8px 24px rgba(0, 0, 0, .35); transition: transform .3s var(--ease), opacity .3s, visibility .3s, box-shadow .3s; }
+.fab-wa { background: #25d366; }
+.fab-mail { background: var(--grad); }
+.fab-top { background: var(--card-2); border: 1px solid var(--line); opacity: 0; visibility: hidden; transform: translateY(12px); }
+.fab-top.show { opacity: 1; visibility: visible; transform: none; }
+.fab-btn:active { transform: scale(.92); }
+@media (hover: hover) { .fab-btn:hover { transform: translateY(-3px); box-shadow: var(--glow); } }
+.menu.open ~ .fab { visibility: hidden; }
+
 /* ---------- mobile quick-action dock ---------- */
 .dock { display: none; }
 .book-cta { display: none; }
@@ -372,6 +383,9 @@ ul { list-style: none; margin: 0; padding: 0; }
   .dock-ico { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: #fff; font-size: 1.3rem; }
   .dock-ico:active { transform: scale(.94); }
   .menu.open ~ .dock { visibility: hidden; }
+  .fab { right: 1rem; bottom: calc(76px + .75rem + env(safe-area-inset-bottom)); gap: .55rem; }
+  .no-dock .fab { bottom: calc(1rem + env(safe-area-inset-bottom)); }
+  .fab-btn { width: 48px; height: 48px; font-size: 1.3rem; }
 
   /* shorter first screen: the DJ photo no longer fills a whole phone */
   .hero { min-height: 0; padding: 6.5rem 0 3rem; }
