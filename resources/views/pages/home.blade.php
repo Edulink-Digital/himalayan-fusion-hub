@@ -1,95 +1,136 @@
 @extends('layouts.app')
 
 @section('content')
-<x-hero title="Fusion<br>Friday" low="crimson" class="hero-home">
-    <x-slot:above>
-        <p class="doors rise" data-countdown="{{ $doors->toIso8601String() }}">
-            <span class="doors-label">Doors open in</span> <span class="doors-time" data-countdown-text>{{ $doors->format('l g:i a') }}</span>
-        </p>
-    </x-slot:above>
-    <p class="hero-when rise">Fridays from 6:30 pm, Balcatta</p>
-    <p class="hero-line rise">Bollywood, Nepali pop and house on the floor, Himalayan cocktails at the bar, a karaoke lounge out back.</p>
-    <div class="hero-actions rise">
-        <a class="btn btn-big" href="{{ route('book') }}">Book a table</a>
-        <a class="link-arrow" href="#week">See the running order @include('partials.icon', ['name' => 'arrow'])</a>
-    </div>
-</x-hero>
-
-<section class="chapter field-night week" id="week" data-field="night" aria-labelledby="week-title">
-    <div class="grid week-head">
-        <h2 class="rise" id="week-title">This week<br><span class="soft">at the Hub</span></h2>
-        <a class="btn rise" href="{{ route('book') }}">Book a table</a>
-    </div>
-    <div class="grid week-body" data-tabs>
-        <div class="days" role="tablist" aria-label="Day">
-            @foreach ($week as $i => $day)
-                <button class="day" type="button" role="tab" id="tab-{{ $day['key'] }}" aria-controls="panel-{{ $day['key'] }}" aria-selected="{{ $i === 0 ? 'true' : 'false' }}" @if ($i > 0) tabindex="-1" @endif>
-                    <strong>{{ $day['tab'] }}</strong>
-                    <span>{{ $day['date'] ?? 'By booking' }}</span>
-                </button>
-            @endforeach
+<section class="hero" aria-labelledby="hero-title">
+    @include('partials.hero-bg')
+    <span class="shape sh-tri" style="left:6%;top:24%" aria-hidden="true"></span>
+    <span class="shape sh-line" style="right:34%;top:30%" aria-hidden="true"></span>
+    <div class="wrap hero-grid">
+        <div>
+            <p class="kicker rv">Unleashing the power of the night</p>
+            <h1 id="hero-title" class="rv" style="--d:1">Discover The Best Night Out In Perth</h1>
+            <p class="lead rv" style="--d:2">Join us for great cocktails, karaoke and dancing. The beats are loud, the vibes are high and the night is unforgettable.</p>
+            <div class="cta-row rv" style="--d:3">
+                <a class="btn" href="{{ route('book') }}">Book a table</a>
+                <a class="btn btn-outline" href="{{ route('book') }}?type=vip">Book VIP</a>
+            </div>
         </div>
-        <div class="panels">
-            @foreach ($week as $i => $day)
-                <div class="panel" role="tabpanel" id="panel-{{ $day['key'] }}" aria-labelledby="tab-{{ $day['key'] }}" data-panel>
-                    <ol class="bands">
-                        @foreach ($day['slots'] as [$time, $title, $note])
-                            <li class="band rise">
-                                <span class="band-time">{{ $time }}</span>
-                                <span class="band-what"><strong>{{ $title }}</strong><span>{{ $note }}</span></span>
-                            </li>
-                        @endforeach
-                    </ol>
-                </div>
-            @endforeach
+        <div class="deck rv" style="--d:2">
+            <div class="halo" aria-hidden="true"></div>
+            <div class="frame"><img src="{{ asset('images/hero-dj.webp') }}" width="900" height="1100" alt="DJ wearing headphones mixing on the decks" fetchpriority="high"></div>
+            <div class="eqbig" aria-hidden="true">@for ($i = 0; $i < 22; $i++)<i style="animation-delay:-{{ ($i * 0.17) % 1.1 }}s;animation-duration:{{ 0.7 + (($i * 7) % 9) / 10 }}s"></i>@endfor</div>
         </div>
     </div>
 </section>
 
-<section class="chapter field-jade fusion" data-field="jade" aria-labelledby="fusion-title">
-    <div class="grid">
-        <figure class="fusion-pic rise">
-            <div class="drift"><img src="{{ asset('images/thamel-lights.jpg') }}" width="1280" height="960" loading="lazy" alt="A Thamel street in Kathmandu at night, strung with lights under red Devanagari neon"></div>
-            <figcaption>Thamel, Kathmandu, after dark. Photo by Saddam Hussain Ansari, CC BY 4.0.</figcaption>
-        </figure>
-        <div class="fusion-copy">
-            <h2 class="rise" id="fusion-title">From Thamel<br>to Balcatta</h2>
-            <p class="rise">In Kathmandu, Thamel stays lit long after dark: neon in Devanagari, strings of bulbs across the lanes, dohori songs drifting down from upstairs bars.</p>
-            <p class="rise">We brought that night to a unit on Erindale Rd. Nepali and Bollywood on the decks, momo from the kitchen, a karaoke lounge that knows every word, and doors at 6:30 every Friday, which is 4:15 in the afternoon back in Kathmandu.</p>
+<section class="sec" id="about" aria-labelledby="about-title">
+    <div class="wrap about">
+        <div class="collage rv">
+            <div class="pic p1"><img src="{{ asset('images/about-dance.webp') }}" width="700" height="800" loading="lazy" alt="Crowd in red laser light on the dance floor"></div>
+            <div class="pic p2"><img src="{{ asset('images/about-mic.webp') }}" width="700" height="800" loading="lazy" alt="Vintage microphone against a blue backdrop"></div>
+            <div class="pic p3"><img src="{{ asset('images/about-bar.webp') }}" width="800" height="560" loading="lazy" alt="Cocktail being poured at a lit bar"></div>
+            <span class="shape sh-ring" aria-hidden="true"></span><span class="shape sh-tri" aria-hidden="true"></span>
+        </div>
+        <div>
+            <div class="title title-l rv"><span class="ghost">About us</span><h2 id="about-title">We are The Best in The Field</h2><span class="rule"></span></div>
+            <p class="rv">Himalayan Fusion Hub blends the energy of Kathmandu nights with the polish of a Perth club. Whether you are here to dance with friends, take the mic or simply lose yourself in the rhythm, the night is built to deliver.</p>
+            <div class="mini">
+                <div class="card rv" style="--d:1"><h3>VIP Service</h3><span class="rule"></span><p>Private booths, bottle service and a host for your group.</p></div>
+                <div class="card rv" style="--d:2"><h3>Karaoke Rooms</h3><span class="rule"></span><p>Hindi, Nepali and English songbooks with a full sound system.</p></div>
+            </div>
+            <a class="btn rv" href="{{ route('events') }}">Read more</a>
         </div>
     </div>
 </section>
 
-<section class="chapter field-saffron picks" data-field="saffron" aria-labelledby="picks-title" data-picks>
-    <div class="grid">
-        <div class="stage rise" aria-hidden="true">
-            <span class="disc" data-disc data-tone="{{ config('hfh.picks.0.4') }}"></span>
-            @foreach (config('hfh.picks') as $i => [$name, $fact, $img, $alt, $tone])
-                <img class="pick-img" src="{{ asset('images/'.$img.'.webp') }}" width="700" height="875" loading="lazy" alt="" data-pick-img="{{ $i }}" @if ($i > 0) hidden @endif>
-            @endforeach
-        </div>
-        <div class="pick-list">
-            <h2 class="pick-head rise" id="picks-title">From the bar</h2>
-            <ul class="pick-names" role="list">
-                @foreach (config('hfh.picks') as $i => [$name, $fact, $img, $alt, $tone])
-                    <li><button type="button" class="pick" aria-pressed="{{ $i === 0 ? 'true' : 'false' }}" data-pick="{{ $i }}" data-tone="{{ $tone }}" data-fact="{{ $fact }}">{{ $name }}</button></li>
-                @endforeach
+<section class="sec" style="padding-top:0" aria-labelledby="live-title">
+    <div class="wrap">
+        <div class="ticket rv">
+            <span class="shape sh-tri" style="right:5%;bottom:8%" aria-hidden="true"></span>
+            <p class="sale">Doors open soon</p>
+            <h2 id="live-title">Where the party never ends</h2>
+            <p>Fusion Friday is the weekly main event. Dancing, cocktails and a DJ who reads the room.</p>
+            @include('partials.countdown')
+            <ul class="meta">
+                <li>Day: <strong>Every Friday</strong></li>
+                <li>Doors: <strong>6:30 pm</strong></li>
+                <li>Typical spend: <strong>{{ config('hfh.price_range') }}</strong></li>
+                <li>Location: <strong>{{ config('hfh.address') }}</strong></li>
             </ul>
-            <p class="pick-fact" aria-live="polite" data-pick-fact>{{ config('hfh.picks.0.1') }}</p>
-            <a class="link-arrow" href="{{ route('menu') }}">The full menu @include('partials.icon', ['name' => 'arrow'])</a>
+            <a class="btn" href="{{ route('book') }}">Book table</a>
         </div>
     </div>
 </section>
 
-@include('partials.gallery')
+<section class="sec" style="padding-top:0" aria-labelledby="services-title">
+    <div class="wrap">
+        <div class="title rv"><span class="ghost">Services</span><h2 id="services-title">What We Provide</h2><span class="rule"></span><p>Three reasons to make Himalayan Fusion Hub your night out.</p></div>
+        <div class="grid-3">
+            <article class="card service rv"><div class="ico"><i class="ph-bold ph-martini" aria-hidden="true"></i></div><h3>Cocktails</h3><p>Masterfully crafted cocktails with Himalayan spice, fresh citrus and heavy-handed pours, served at our stylish bar.</p></article>
+            <article class="card service rv" style="--d:1"><div class="ico"><i class="ph-bold ph-microphone-stage" aria-hidden="true"></i></div><h3>Karaoke</h3><p>Bollywood, Nepali classics and chart hits. Bring the group, grab a mic and own the room.</p></article>
+            <article class="card service rv" style="--d:2"><div class="ico"><i class="ph-bold ph-disc" aria-hidden="true"></i></div><h3>Dancing</h3><p>A DJ who reads the floor, lights that follow the beat and enough space to move all night.</p></article>
+        </div>
+    </div>
+</section>
 
-@include('partials.faq')
+<section class="sec" style="padding-top:0" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+        <div class="title rv"><span class="ghost">Photos</span><h2 id="gallery-title">Our Gallery</h2><span class="rule"></span><p>Discover the magic of music, one photo at a time.</p></div>
+        <div class="tabs rv" role="group" aria-label="Filter gallery" data-tabs>
+            <button type="button" aria-pressed="true" data-f="all">All</button>
+            <button type="button" aria-pressed="false" data-f="Dancing">Dancing</button>
+            <button type="button" aria-pressed="false" data-f="Drinks">Drinks</button>
+            <button type="button" aria-pressed="false" data-f="Karaoke">Karaoke</button>
+            <button type="button" aria-pressed="false" data-f="Food">Food</button>
+            <button type="button" aria-pressed="false" data-f="Music">Music</button>
+        </div>
+        <div class="gallery" data-gallery>
+            @foreach (config('hfh.gallery') as $g)
+                @php [$w, $h] = explode('/', $g[2]); @endphp
+                <figure class="shot" data-cat="{{ $g[0] }}" data-label="{{ $g[1] }}" style="--ar:{{ $g[2] }}"><img src="{{ asset('images/'.$g[3].'.webp') }}" width="{{ $w }}" height="{{ $h }}" loading="lazy" alt="{{ $g[4] }}"></figure>
+            @endforeach
+        </div>
+    </div>
+</section>
 
-<section class="chapter field-crimson contact" id="contact" data-field="crimson" aria-label="Find us">
-    <a class="row-line" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener"><span>Unit 2/98 Erindale Rd</span></a>
-    <a class="row-line" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener"><span>Balcatta WA 6021</span></a>
-    <p class="row-line"><span>Fridays <span class="nowrap">from 6:30 pm</span></span></p>
-    <a class="row-line" href="tel:{{ config('hfh.phone_href') }}"><span>{{ config('hfh.phone') }}</span></a>
-    <a class="row-line row-go" href="{{ route('book') }}"><span>Book</span><span class="round">@include('partials.icon', ['name' => 'arrow'])</span></a>
+<section class="sec" style="padding-top:0" aria-labelledby="events-title">
+    <div class="wrap">
+        <div class="title rv"><span class="ghost">Events</span><h2 id="events-title">Upcoming Events</h2><span class="rule"></span><p>Celebrate the rhythm, energy and passion, all in one unforgettable night.</p></div>
+        @include('partials.event-cards', ['limit' => 2])
+        <div class="t-center"><a class="btn btn-outline" href="{{ route('events') }}">View all</a></div>
+    </div>
+</section>
+
+<section class="sec" style="padding-top:0" id="book" aria-labelledby="tables-title">
+    <div class="wrap">
+        <div class="title rv"><span class="ghost">Tables</span><h2 id="tables-title">Book Your Table</h2><span class="rule"></span><p>Spend less time waiting and more time on the dance floor.</p></div>
+        <div class="card rv" style="max-width:900px;margin-inline:auto;padding:2.2rem">
+            @include('partials.booking-form')
+        </div>
+    </div>
+</section>
+
+<section class="sec" style="padding-top:0" aria-labelledby="sub-title">
+    <div class="wrap">
+        <div class="card subscribe rv">
+            <div><h3 id="sub-title">Questions about tonight? Talk to the team</h3></div>
+            <div><a class="btn" href="tel:{{ config('hfh.phone_href') }}"><i class="ph-bold ph-phone" aria-hidden="true"></i> Call {{ config('hfh.phone') }}</a></div>
+        </div>
+    </div>
+</section>
+
+<section class="sec" style="padding-top:0" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+        <div class="title rv"><span class="ghost">Contact</span><h2 id="contact-title">Get In Touch</h2><span class="rule"></span></div>
+        <div class="contact">
+            <div class="card rv"><h3>Address</h3><span class="rule"></span><div class="info"><div><i class="ph-bold ph-map-pin" aria-hidden="true"></i><p><a href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">{{ config('hfh.address') }}</a></p></div></div></div>
+            <div class="card rv" style="--d:1"><h3>Call Us</h3><span class="rule"></span><div class="info"><div><i class="ph-bold ph-phone" aria-hidden="true"></i><p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div></div></div>
+            <div class="card rv" style="--d:2"><h3>Opening Hours</h3><span class="rule"></span>
+                <ul class="hours-list">@foreach (config('hfh.hours') as $h)<li @class(['on' => $h['live']])><strong>{{ $h['day'] }}</strong><span>{{ $h['time'] }}</span></li>@endforeach</ul>
+            </div>
+        </div>
+        <a class="btn btn-outline map-open rv" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener"><i class="ph-bold ph-map-pin" aria-hidden="true"></i> Open in Google Maps</a>
+        <div class="map rv"><iframe title="Map to Himalayan Fusion Hub" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ config('hfh.maps_embed') }}"></iframe></div>
+    </div>
 </section>
 @endsection
