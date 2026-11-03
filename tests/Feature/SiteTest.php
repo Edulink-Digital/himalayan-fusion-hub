@@ -61,8 +61,14 @@ class SiteTest extends TestCase
     {
         $this->get('/')
             ->assertSee('https://wa.me/61493964334', false)
-            ->assertSee('data-to-top', false)
-            ->assertDontSee('mailto:', false);
+            ->assertSee('data-to-top', false);
+    }
+
+    public function test_email_button_hides_without_an_address(): void
+    {
+        config(['hfh.email' => null]);
+
+        $this->get('/')->assertDontSee('mailto:', false);
     }
 
     public function test_email_button_appears_once_an_address_is_set(): void

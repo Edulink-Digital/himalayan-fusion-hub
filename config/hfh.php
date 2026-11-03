@@ -13,8 +13,8 @@ return [
     'phone' => '0493 964 334',
     'phone_href' => '+61493964334',
     'whatsapp' => '61493964334',
-    // CONFIRM: the club's email address. The floating email button shows once this is set.
-    'email' => null,
+    // CONFIRM: placeholder address; replace with the club's real email before launch.
+    'email' => 'hfh@gmail.com',
     'maps_embed' => 'https://www.google.com/maps?q=Unit+2%2F98+Erindale+Rd%2C+Balcatta+WA+6021&output=embed',
     'maps_link' => 'https://www.google.com/maps/search/?api=1&query=Himalayan+Fusion+Hub+98+Erindale+Rd+Balcatta+WA',
     'price_range' => '$20 - $100 per person',
