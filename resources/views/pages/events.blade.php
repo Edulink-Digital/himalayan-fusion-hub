@@ -1,15 +1,33 @@
 @extends('layouts.app')
-@section('title', 'Events & Nights | Himalayan Fusion Hub Perth')
-@section('description', 'Fusion Fridays, karaoke lounge and private hire at Himalayan Fusion Hub, Balcatta WA.')
+@section('title', 'Nights & Events | Himalayan Fusion Hub Perth')
+@section('description', 'Fusion Friday from 6:30 pm, the karaoke lounge and private hire at Himalayan Fusion Hub, Balcatta WA.')
 @section('content')
-<section class="page-hero">
-    @include('partials.hero-bg')
-    <div class="wrap"><h1 class="rv">Upcoming Events</h1><p class="rv" style="--d:1">From the Friday dance floor to private karaoke rooms.</p>
-        <div class="crumbs rv" style="--d:2"><a href="{{ route('home') }}">Home</a><b>/</b><span>Events</span></div></div>
-</section>
-<section class="sec" style="padding-top:2rem"><div class="wrap">@include('partials.event-cards', ['hl' => 'h2'])</div></section>
-<section class="sec" style="padding-top:0" aria-labelledby="faq-title"><div class="wrap">
-    <div class="title rv"><span class="ghost">FAQ</span><h2 id="faq-title">Good to Know</h2><span class="rule"></span></div>
-    <div class="faq rv">@foreach (config('hfh.faq') as $f)<details><summary>{{ $f[0] }} <i class="ph-bold ph-plus" aria-hidden="true"></i></summary><p>{{ $f[1] }}</p></details>@endforeach</div>
-</div></section>
+<x-hero title="Three ways<br>to go out" low="blue">
+    <x-slot:above>
+        <p class="doors rise" data-countdown="{{ $doors->toIso8601String() }}">
+            <span class="doors-label">Next Fusion Friday in</span> <span class="doors-time" data-countdown-text>{{ $doors->format('l g:i a') }}</span>
+        </p>
+    </x-slot:above>
+    <p class="hero-when rise">Dance, sing or take the whole floor</p>
+    <p class="hero-line rise">Every night here is one of three things. Pick yours and send a request; we call back to confirm.</p>
+</x-hero>
+
+@foreach (config('hfh.nights') as $i => $night)
+    <section @class(['chapter', 'night', 'field-'.$night['field'], 'night-flip' => $i % 2 === 1]) id="{{ $night['slug'] }}" data-field="{{ $night['field'] }}" aria-labelledby="{{ $night['slug'] }}-title">
+        <div class="grid">
+            <figure class="night-pic rise"><div class="drift"><img src="{{ asset('images/'.$night['image'][0].'.webp') }}" width="800" height="600" loading="lazy" alt="{{ $night['image'][1] }}"></div></figure>
+            <div class="night-copy">
+                <h2 class="rise" id="{{ $night['slug'] }}-title">{{ $night['title'] }}</h2>
+                <p class="night-when rise">{{ $night['when'] }}</p>
+                <p class="rise">{{ $night['blurb'] }}</p>
+                <p class="night-spend rise">Typical spend {{ config('hfh.price_range') }}</p>
+                <a class="btn btn-big rise" href="{{ route('book', ['type' => $night['book']]) }}">Book {{ $night['title'] }}</a>
+            </div>
+        </div>
+    </section>
+@endforeach
+
+@include('partials.gallery')
+
+@include('partials.faq')
 @endsection

@@ -11,6 +11,13 @@ class SiteTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutVite();
+    }
+
     /** @return array<string, array{string}> */
     public static function pages(): array
     {
@@ -26,7 +33,7 @@ class SiteTest extends TestCase
     public function test_referenced_images_exist(): void
     {
         $html = $this->get('/')->getContent().$this->get('/events')->getContent();
-        preg_match_all('#/images/([a-z0-9-]+\.webp)#', $html, $m);
+        preg_match_all('#/images/([a-z0-9-]+\.(?:webp|jpg))#', $html, $m);
 
         $this->assertNotEmpty($m[1]);
         foreach (array_unique($m[1]) as $file) {
@@ -54,6 +61,26 @@ class SiteTest extends TestCase
 
     public function test_booking_type_preselected_from_query(): void
     {
-        $this->get('/book?type=vip')->assertSee('value="vip" selected', false);
+        $this->get('/book?type=vip')->assertSee('value="vip" checked', false);
+    }
+
+    public function test_home_shows_the_week_and_next_doors(): void
+    {
+        $this->get('/')
+            ->assertSee('This week')
+            ->assertSee('Doors open')
+            ->assertSee('data-countdown="', false)
+            ->assertSee('role="tab"', false);
+    }
+
+    public function test_menu_lists_every_dish(): void
+    {
+        $response = $this->get('/menu');
+
+        foreach (config('hfh.menu') as $group) {
+            foreach ($group['items'] as [$dish]) {
+                $response->assertSee($dish);
+            }
+        }
     }
 }
