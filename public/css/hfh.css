@@ -313,6 +313,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 .site-footer { border-top: 1px solid var(--line); padding: 2rem 0; text-align: center; color: var(--muted); font-size: .95rem; background: rgba(6, 5, 20, .6); }
 .site-footer a:hover { color: #fff; }
 .foot-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0 1rem; margin-bottom: .8rem; }
+.credit { margin-top: .4rem; }
+.credit a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 4px; }
 .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .4rem; }
 
 /* ---------- mobile quick-action dock ---------- */
