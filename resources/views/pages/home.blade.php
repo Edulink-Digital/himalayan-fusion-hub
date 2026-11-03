@@ -66,9 +66,9 @@
     <div class="wrap">
         <div class="title rv"><span class="ghost">Services</span><h2 id="services-title">What We Provide</h2><span class="rule"></span><p>Three reasons to make Himalayan Fusion Hub your night out.</p></div>
         <div class="grid-3">
-            <article class="card service rv"><div class="ico"><i class="ph-bold ph-martini" aria-hidden="true"></i></div><h3>Cocktails</h3><p>Masterfully crafted cocktails with Himalayan spice, fresh citrus and heavy-handed pours, served at our stylish bar.</p></article>
-            <article class="card service rv" style="--d:1"><div class="ico"><i class="ph-bold ph-microphone-stage" aria-hidden="true"></i></div><h3>Karaoke</h3><p>Bollywood, Nepali classics and chart hits. Bring the group, grab a mic and own the room.</p></article>
-            <article class="card service rv" style="--d:2"><div class="ico"><i class="ph-bold ph-disc" aria-hidden="true"></i></div><h3>Dancing</h3><p>A DJ who reads the floor, lights that follow the beat and enough space to move all night.</p></article>
+            <article class="card service rv"><div class="ico">@include('partials.icon', ['name' => 'martini'])</div><h3>Cocktails</h3><p>Masterfully crafted cocktails with Himalayan spice, fresh citrus and heavy-handed pours, served at our stylish bar.</p></article>
+            <article class="card service rv" style="--d:1"><div class="ico">@include('partials.icon', ['name' => 'microphone-stage'])</div><h3>Karaoke</h3><p>Bollywood, Nepali classics and chart hits. Bring the group, grab a mic and own the room.</p></article>
+            <article class="card service rv" style="--d:2"><div class="ico">@include('partials.icon', ['name' => 'disc'])</div><h3>Dancing</h3><p>A DJ who reads the floor, lights that follow the beat and enough space to move all night.</p></article>
         </div>
     </div>
 </section>
@@ -104,9 +104,10 @@
 <section class="sec" style="padding-top:0" id="book" aria-labelledby="tables-title">
     <div class="wrap">
         <div class="title rv"><span class="ghost">Tables</span><h2 id="tables-title">Book Your Table</h2><span class="rule"></span><p>Spend less time waiting and more time on the dance floor.</p></div>
-        <div class="card rv" style="max-width:900px;margin-inline:auto;padding:2.2rem">
+        <div class="card home-form rv" style="max-width:900px;margin-inline:auto;padding:2.2rem">
             @include('partials.booking-form')
         </div>
+        <a class="btn book-cta rv" href="{{ route('book') }}">Open the booking form</a>
     </div>
 </section>
 
@@ -114,7 +115,7 @@
     <div class="wrap">
         <div class="card subscribe rv">
             <div><h3 id="sub-title">Questions about tonight? Talk to the team</h3></div>
-            <div><a class="btn" href="tel:{{ config('hfh.phone_href') }}"><i class="ph-bold ph-phone" aria-hidden="true"></i> Call {{ config('hfh.phone') }}</a></div>
+            <div><a class="btn" href="tel:{{ config('hfh.phone_href') }}">@include('partials.icon', ['name' => 'phone']) Call {{ config('hfh.phone') }}</a></div>
         </div>
     </div>
 </section>
@@ -123,14 +124,17 @@
     <div class="wrap">
         <div class="title rv"><span class="ghost">Contact</span><h2 id="contact-title">Get In Touch</h2><span class="rule"></span></div>
         <div class="contact">
-            <div class="card rv"><h3>Address</h3><span class="rule"></span><div class="info"><div><i class="ph-bold ph-map-pin" aria-hidden="true"></i><p><a href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">{{ config('hfh.address') }}</a></p></div></div></div>
-            <div class="card rv" style="--d:1"><h3>Call Us</h3><span class="rule"></span><div class="info"><div><i class="ph-bold ph-phone" aria-hidden="true"></i><p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div></div></div>
+            <div class="card rv"><h3>Address</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'map-pin'])<p><a href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">{{ config('hfh.address') }}</a></p></div></div></div>
+            <div class="card rv" style="--d:1"><h3>Call Us</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'phone'])<p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div></div></div>
             <div class="card rv" style="--d:2"><h3>Opening Hours</h3><span class="rule"></span>
                 <ul class="hours-list">@foreach (config('hfh.hours') as $h)<li @class(['on' => $h['live']])><strong>{{ $h['day'] }}</strong><span>{{ $h['time'] }}</span></li>@endforeach</ul>
             </div>
         </div>
-        <a class="btn btn-outline map-open rv" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener"><i class="ph-bold ph-map-pin" aria-hidden="true"></i> Open in Google Maps</a>
-        <div class="map rv"><iframe title="Map to Himalayan Fusion Hub" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ config('hfh.maps_embed') }}"></iframe></div>
+        <a class="btn btn-outline map-open rv" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'map-pin']) Open in Google Maps</a>
+        <div class="map rv" data-map="{{ config('hfh.maps_embed') }}">
+            <button class="map-load" type="button" data-map-load>@include('partials.icon', ['name' => 'map-pin'])<span>Show the map</span><small>{{ config('hfh.address') }}</small></button>
+            <noscript><iframe title="Map to Himalayan Fusion Hub" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ config('hfh.maps_embed') }}"></iframe></noscript>
+        </div>
     </div>
 </section>
 @endsection

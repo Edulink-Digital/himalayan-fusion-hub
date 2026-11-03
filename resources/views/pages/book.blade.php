@@ -11,9 +11,9 @@
     <div class="card rv" id="booking-form">@include('partials.booking-form')</div>
     <aside class="card rv" style="--d:1"><h2>Prefer to call?</h2><span class="rule"></span>
         <div class="info">
-            <div><i class="ph-bold ph-phone" aria-hidden="true"></i><p><strong>Phone</strong><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div>
-            <div><i class="ph-bold ph-map-pin" aria-hidden="true"></i><p><strong>Where</strong>{{ config('hfh.address') }}</p></div>
-            <div><i class="ph-bold ph-ticket" aria-hidden="true"></i><p><strong>Typical spend</strong>{{ config('hfh.price_range') }}</p></div>
+            <div>@include('partials.icon', ['name' => 'phone'])<p><strong>Phone</strong><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div>
+            <div>@include('partials.icon', ['name' => 'map-pin'])<p><strong>Where</strong>{{ config('hfh.address') }}</p></div>
+            <div>@include('partials.icon', ['name' => 'ticket'])<p><strong>Typical spend</strong>{{ config('hfh.price_range') }}</p></div>
         </div>
     </aside>
 </div></section>

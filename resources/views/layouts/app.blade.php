@@ -11,8 +11,7 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Volkhov:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Volkhov&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/hfh.css') }}?v={{ filemtime(public_path('css/hfh.css')) }}">
     <script type="application/ld+json">
     {!! json_encode([
@@ -23,7 +22,6 @@
     </script>
 </head>
 <body @class(['no-dock' => request()->routeIs('book')])>
-<div class="preloader" data-preloader aria-hidden="true"><div class="bars"><i></i><i></i><i></i><i></i><i></i></div></div>
 <a class="skip" href="#main">Skip to content</a>
 @include('partials.header')
 <main id="main">@yield('content')</main>
@@ -31,8 +29,8 @@
 @unless (request()->routeIs('book'))
     <nav class="dock" aria-label="Quick actions">
         <a class="btn dock-book" href="{{ route('book') }}">Book a table</a>
-        <a class="dock-ico" href="tel:{{ config('hfh.phone_href') }}" aria-label="Call {{ config('hfh.phone') }}"><i class="ph-bold ph-phone" aria-hidden="true"></i></a>
-        <a class="dock-ico" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener" aria-label="Directions in Google Maps"><i class="ph-bold ph-map-pin" aria-hidden="true"></i></a>
+        <a class="dock-ico" href="tel:{{ config('hfh.phone_href') }}" aria-label="Call {{ config('hfh.phone') }}">@include('partials.icon', ['name' => 'phone'])</a>
+        <a class="dock-ico" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener" aria-label="Directions in Google Maps">@include('partials.icon', ['name' => 'map-pin'])</a>
     </nav>
 @endunless
 <script src="{{ asset('js/hfh.js') }}?v={{ filemtime(public_path('js/hfh.js')) }}" defer></script>

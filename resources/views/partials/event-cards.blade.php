@@ -6,9 +6,9 @@
             <{{ $hl ?? 'h3' }}>{{ $n['title'] }}</{{ $hl ?? 'h3' }}>
             <p>{{ $n['blurb'] }}</p>
             <div class="ev-meta">
-                <span><i class="ph-bold ph-calendar-blank" aria-hidden="true"></i>{{ $n['when'] }}</span>
-                <span><i class="ph-bold ph-ticket" aria-hidden="true"></i>{{ config('hfh.price_range') }}</span>
-                <span><i class="ph-bold ph-map-pin" aria-hidden="true"></i>Balcatta, Perth</span>
+                <span>@include('partials.icon', ['name' => 'calendar-blank']){{ $n['when'] }}</span>
+                <span>@include('partials.icon', ['name' => 'ticket']){{ config('hfh.price_range') }}</span>
+                <span>@include('partials.icon', ['name' => 'map-pin'])Balcatta, Perth</span>
             </div>
             <a class="btn btn-sm" href="{{ route('book') }}?type={{ $n['book'] }}">Book now</a>
         </div>

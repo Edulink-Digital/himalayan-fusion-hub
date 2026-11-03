@@ -4,7 +4,7 @@
             <strong>HF<span class="mk">H</span><span class="eqmini" aria-hidden="true"><i></i><i></i><i></i></span></strong>
             <small>Himalayan Fusion Hub</small>
         </a>
-        <a class="head-phone" href="tel:{{ config('hfh.phone_href') }}"><i class="ph-bold ph-phone" aria-hidden="true"></i><span>{{ config('hfh.phone') }}</span></a>
+        <a class="head-phone" href="tel:{{ config('hfh.phone_href') }}">@include('partials.icon', ['name' => 'phone'])<span>{{ config('hfh.phone') }}</span></a>
         <a class="btn btn-sm" href="{{ route('book') }}">Book now</a>
         <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" data-burger><span></span><span></span><span></span></button>
     </div>

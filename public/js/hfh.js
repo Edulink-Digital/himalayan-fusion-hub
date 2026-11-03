@@ -3,14 +3,6 @@
   root.classList.add('js');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // preloader
-  const pre = document.querySelector('[data-preloader]');
-  const hidePre = () => pre && pre.classList.add('done');
-  // hide as soon as the page is usable instead of waiting for every image
-  if (document.readyState !== 'loading') setTimeout(hidePre, 150);
-  else document.addEventListener('DOMContentLoaded', () => setTimeout(hidePre, 150));
-  setTimeout(hidePre, 1000);
-
   // header turns solid after the first screen (sentinel observer, no scroll listener)
   const header = document.querySelector('[data-header]');
   if (header) {
@@ -85,6 +77,16 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   }
+
+  // map: load the Google embed (about 600KB) only when asked for
+  document.querySelectorAll('[data-map-load]').forEach((btn) => btn.addEventListener('click', () => {
+    const box = btn.closest('[data-map]');
+    const frame = document.createElement('iframe');
+    frame.title = 'Map to Himalayan Fusion Hub';
+    frame.referrerPolicy = 'no-referrer-when-downgrade';
+    frame.src = box.dataset.map;
+    btn.replaceWith(frame);
+  }));
 
   const date = document.querySelector('input[type="date"][data-min-today]');
   if (date) date.min = new Date().toLocaleDateString('en-CA');

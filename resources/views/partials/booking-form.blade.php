@@ -1,8 +1,8 @@
 @if (session('booked'))
-    <div class="success" role="status"><i class="ph-bold ph-check-circle" aria-hidden="true"></i><div><strong>Request received, {{ session('booked') }}.</strong>We will call you shortly to confirm your booking.</div></div>
+    <div class="success" role="status">@include('partials.icon', ['name' => 'check-circle'])<div><strong>Request received, {{ session('booked') }}.</strong>We will call you shortly to confirm your booking.</div></div>
 @endif
 @if ($errors->any())
-    <div class="success bad" role="alert"><i class="ph-bold ph-warning-circle" aria-hidden="true"></i><div><strong>Check the highlighted fields.</strong>{{ $errors->count() }} {{ Str::plural('thing', $errors->count()) }} need your attention.</div></div>
+    <div class="success bad" role="alert">@include('partials.icon', ['name' => 'warning-circle'])<div><strong>Check the highlighted fields.</strong>{{ $errors->count() }} {{ Str::plural('thing', $errors->count()) }} need your attention.</div></div>
 @endif
 @php $sel = old('type', request('type')); @endphp
 <form class="form" method="POST" action="{{ route('book.store') }}" novalidate>
