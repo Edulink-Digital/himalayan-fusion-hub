@@ -59,11 +59,12 @@ ul { list-style: none; margin: 0; padding: 0; }
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 52px; padding: 0 2rem;
   border-radius: 60px; border: 1px solid transparent; font: 400 1rem/1 var(--font-b); letter-spacing: .02em; text-transform: uppercase; white-space: nowrap; cursor: pointer; color: #fff;
-  background: var(--grad); overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease), filter .3s; touch-action: manipulation;
+  background: var(--grad); overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), box-shadow .35s var(--ease), filter .3s; touch-action: manipulation;
 }
 .btn::after { content: ""; position: absolute; left: 20%; right: 20%; bottom: 0; height: 2px; background: linear-gradient(90deg, transparent, #fff, transparent); opacity: .8; }
 @media (hover: hover) { .btn:hover { transform: translateY(-2px); box-shadow: var(--glow); filter: brightness(1.12); } }
 .btn:active { transform: scale(.97); }
+.btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: var(--glow); }
 .btn-outline { background: transparent; border-color: rgba(255, 255, 255, .7); }
 .btn-outline::after { display: none; }
 .btn-outline:hover { background: rgba(255, 255, 255, .08); border-color: var(--primary); box-shadow: none; }
@@ -222,6 +223,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .event .poster { aspect-ratio: 4/3; border-radius: 10px; position: relative; overflow: hidden; background: var(--card); }
 .event .poster img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
 .event:hover .poster img { transform: scale(1.06); }
+.card:focus-within { border-color: rgba(219, 94, 255, .6); }
 .event h2, .event h3 { font-size: 1.6rem; margin-bottom: .8rem; }
 .event p { color: var(--muted); }
 .ev-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; margin: 1.1rem 0; color: #fff; font-size: .98rem; }
@@ -316,6 +318,24 @@ ul { list-style: none; margin: 0; padding: 0; }
 .credit { margin-top: .4rem; }
 .credit a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 4px; }
 .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .4rem; }
+
+/* ---------- pointer focus: glow, sheen and zoom follow the mouse (set by hfh.js) ---------- */
+@property --spot { syntax: '<number>'; inherits: false; initial-value: 0; }
+.card { background-image: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgb(219 94 255 / calc(var(--spot) * .16)), transparent 70%); transition: transform .5s var(--ease), border-color .4s, box-shadow .4s, --spot .4s; }
+.card:focus-within { --spot: 1; }
+.btn::before, .fab-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(90px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, .35), transparent 70%); opacity: 0; transition: opacity .3s; pointer-events: none; }
+.fab-btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn:focus-visible::before, .fab-btn:focus-visible::before { opacity: 1; }
+.fab-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.pic img, .deck .frame img { transition: transform 1s var(--ease); }
+.shot img, .pic img, .event .poster img, .deck .frame img { transform-origin: var(--mx, 50%) var(--my, 50%); }
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { --spot: 1; }
+  .btn:hover::before, .fab-btn:hover::before { opacity: 1; }
+  .pic:hover img { transform: scale(1.1); }
+  .deck:hover .frame img { transform: scale(1.05); }
+  .shot, .pic, .event .poster, .deck .frame { cursor: zoom-in; }
+}
 
 /* ---------- floating contact buttons (bottom right) ---------- */
 .fab { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: calc(var(--z-header) - 2); display: flex; flex-direction: column; gap: .7rem; }

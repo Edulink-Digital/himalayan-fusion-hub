@@ -3,6 +3,25 @@
   root.classList.add('js');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // pointer focus: tell cards, buttons and photos where the mouse is so the glow and zoom follow it
+  if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const targets = '.card, .btn, .fab-btn, .shot, .pic, .event .poster, .deck .frame';
+    let last = null, queued = false;
+    const place = () => {
+      queued = false;
+      for (let el = last.target.closest(targets); el; el = el.parentElement?.closest(targets)) {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', `${last.clientX - r.left}px`);
+        el.style.setProperty('--my', `${last.clientY - r.top}px`);
+      }
+    };
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse' || !(e.target instanceof Element)) return;
+      last = e;
+      if (!queued) { queued = true; requestAnimationFrame(place); }
+    }, { passive: true });
+  }
+
   // header turns solid after the first screen (sentinel observer, no scroll listener)
   const header = document.querySelector('[data-header]');
   if (header) {
