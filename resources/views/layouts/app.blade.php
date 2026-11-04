@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>@yield('title', 'Himalayan Fusion Hub | Night Club in Balcatta, Perth')</title>
-    <meta name="description" content="@yield('description', 'Himalayan Fusion Hub is a Perth night club in Balcatta WA with great cocktails, karaoke and dancing. Book a table or private hire today.')">
+    <meta name="description" content="@yield('description', 'Himalayan Fusion Hub is a Perth night club in Balcatta WA with karaoke, snooker, a full bar, DJ nights and special events. Book a table or private hire today.')">
     <meta name="theme-color" content="#0a0820">
     <meta property="og:title" content="Himalayan Fusion Hub | Perth Night Club">
-    <meta property="og:description" content="Cocktails, karaoke and dancing in Balcatta, Perth.">
+    <meta property="og:description" content="Karaoke, snooker, cocktails, DJ nights and special events in Balcatta, Perth.">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

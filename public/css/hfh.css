@@ -203,6 +203,16 @@ ul { list-style: none; margin: 0; padding: 0; }
 .service h3 { display: inline-flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
 .service h3::before, .service h3::after { content: ""; width: 34px; height: 1px; background: var(--primary); opacity: .6; }
 .service p { color: var(--muted); }
+.features .service { display: flex; flex-direction: column; align-items: center; }
+.service-body { display: flex; flex-direction: column; align-items: center; flex: 1; }
+.service-body .service-link { margin-top: auto; padding-top: 1rem; }
+.service-link { display: inline-flex; align-items: center; gap: .4rem; min-height: 44px; margin-top: 1rem; color: var(--primary); font-size: .95rem; letter-spacing: .04em; text-transform: uppercase; }
+.service-link span { transition: transform .3s var(--ease); }
+/* the whole card is the tap target */
+.service-link::before { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
+.service-link:focus-visible { outline: none; }
+.service:has(.service-link:focus-visible) { outline: 3px solid var(--primary); outline-offset: 3px; }
+@media (hover: hover) { .service:hover .service-link span { transform: translateX(5px); } }
 
 /* ---------- gallery ---------- */
 .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; padding: .5rem; border: 1px solid var(--line); border-radius: 60px; background: rgba(20, 18, 46, .6); max-width: max-content; margin: 0 auto 2.5rem; }
@@ -356,6 +366,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .hero-grid, .about, .book-wrap, .subscribe, .menu-grid { grid-template-columns: 1fr; }
   .deck { max-width: 420px; }
   .grid-3, .contact { grid-template-columns: 1fr; }
+  .features { grid-template-columns: repeat(2, 1fr); }
   .gallery { columns: 2; }
   .event { grid-template-columns: 1fr; }
   .mini-count { grid-template-columns: repeat(4, 1fr); }
@@ -414,10 +425,17 @@ ul { list-style: none; margin: 0; padding: 0; }
   .count b { font-size: 1.6rem; }
   .count span { font-size: .8rem; }
 
-  /* compact service cards */
-  .service { padding: 1.8rem 1.3rem; }
-  .ico { width: 64px; height: 64px; font-size: 1.7rem; margin-bottom: 1rem; }
-  .grid-3 { gap: 1rem; }
+  /* compact service cards: icon beside the text so six fit without endless scrolling */
+  .grid-3 { gap: .8rem; }
+  .features { grid-template-columns: 1fr; }
+  .features .service { display: grid; grid-template-columns: 56px 1fr; gap: 1rem; align-items: start; padding: 1.2rem; text-align: left; }
+  .features .service-body { align-items: flex-start; }
+  .features .service-body .service-link { padding-top: 0; }
+  .features .ico { width: 56px; height: 56px; font-size: 1.5rem; margin: 0; }
+  .features .service h3 { margin-bottom: .35rem; font-size: 1.2rem; }
+  .features .service h3::before, .features .service h3::after { display: none; }
+  .features .service p { font-size: .95rem; line-height: 1.55; }
+  .features .service-link { margin-top: .2rem; min-height: 40px; font-size: .85rem; }
 
   /* gallery: filters scroll sideways on one line, photos in two columns */
   .tabs { flex-wrap: nowrap; justify-content: flex-start; max-width: 100%; overflow-x: auto; scrollbar-width: none; border-radius: 60px; }

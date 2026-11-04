@@ -52,9 +52,25 @@ return [
     'booking_types' => [
         'table' => 'Table for the night',
         'vip' => 'VIP booth & bottle service',
+        'special' => 'Special event pre-booking',
         'birthday' => 'Birthday or celebration',
-        'private' => 'Private hire / function',
         'karaoke' => 'Karaoke group',
+        'snooker' => 'Snooker table',
+        'private' => 'Private hire / function',
+    ],
+
+    /*
+     * What the venue offers, shown as cards on the home page.
+     * Each: [title, icon, description, link label, link (relative URL)].
+     * CONFIRM: wording for snooker and organised events.
+     */
+    'features' => [
+        ['Karaoke', 'microphone-stage', 'Private karaoke rooms and a main stage with Hindi, Nepali and English songbooks. Grab the mic and own the room.', 'Book karaoke', '/book?type=karaoke'],
+        ['Snooker', 'snooker', 'Snooker tables for a relaxed frame with friends, before or between rounds on the dance floor.', 'Book a snooker table', '/book?type=snooker'],
+        ['Bar', 'martini', 'Himalayan-spiced cocktails, cold beers and heavy-handed pours from a fully stocked bar.', 'See the menu', '/menu'],
+        ['DJ', 'vinyl-record', 'Our DJ blends Bollywood, Nepali pop, Afrobeats and house, with lights that follow every drop.', 'See the nights', '/events'],
+        ['Organised Events', 'confetti', 'Themed nights, cultural celebrations and live shows, planned and hosted by our team.', 'Upcoming events', '/events'],
+        ['Pre-Booking', 'calendar-check', 'Lock in your table, booth or package before special events and festival nights sell out.', 'Pre-book now', '/book?type=special'],
     ],
 
     // CONFIRM: nights are indicative formats, not a published calendar.
@@ -126,6 +142,7 @@ return [
 
     'faq' => [
         ['Is there an entry fee?', 'Spend usually lands between $20 and $100 per person depending on your night. Call us for door details on event nights.'],
+        ['Can I book a snooker table?', 'Yes. Choose "Snooker table" on the booking page, or ask at the bar on the night.'],
         ['Can I book a private room for karaoke?', 'Yes. Send a booking request with your group size and we will confirm by phone.'],
         ['Do you take group and birthday bookings?', 'Yes. Pick the occasion on the booking page and tell us what you need.'],
         ['How do I get there?', 'We are at Unit 2/98 Erindale Rd, Balcatta, just off the main road with parking nearby.'],

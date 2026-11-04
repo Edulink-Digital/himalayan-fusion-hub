@@ -64,11 +64,18 @@
 
 <section class="sec" style="padding-top:0" aria-labelledby="services-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Services</span><h2 id="services-title">What We Provide</h2><span class="rule"></span><p>Three reasons to make Himalayan Fusion Hub your night out.</p></div>
-        <div class="grid-3">
-            <article class="card service rv"><div class="ico">@include('partials.icon', ['name' => 'martini'])</div><h3>Cocktails</h3><p>Masterfully crafted cocktails with Himalayan spice, fresh citrus and heavy-handed pours, served at our stylish bar.</p></article>
-            <article class="card service rv" style="--d:1"><div class="ico">@include('partials.icon', ['name' => 'microphone-stage'])</div><h3>Karaoke</h3><p>Bollywood, Nepali classics and chart hits. Bring the group, grab a mic and own the room.</p></article>
-            <article class="card service rv" style="--d:2"><div class="ico">@include('partials.icon', ['name' => 'disc'])</div><h3>Dancing</h3><p>A DJ who reads the floor, lights that follow the beat and enough space to move all night.</p></article>
+        <div class="title rv"><span class="ghost">Services</span><h2 id="services-title">What We Provide</h2><span class="rule"></span><p>Sing, play, sip and dance: everything for your night out under one roof in Balcatta.</p></div>
+        <div class="grid-3 features">
+            @foreach (config('hfh.features') as $i => [$title, $icon, $text, $cta, $link])
+                <article class="card service rv" style="--d:{{ $i % 3 }}">
+                    <div class="ico">@include('partials.icon', ['name' => $icon])</div>
+                    <div class="service-body">
+                        <h3>{{ $title }}</h3>
+                        <p>{{ $text }}</p>
+                        <a class="service-link" href="{{ url($link) }}">{{ $cta }} <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </article>
+            @endforeach
         </div>
     </div>
 </section>

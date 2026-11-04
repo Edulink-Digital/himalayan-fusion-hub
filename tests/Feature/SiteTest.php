@@ -57,6 +57,32 @@ class SiteTest extends TestCase
         $this->get('/book?type=vip')->assertSee('value="vip" selected', false);
     }
 
+    public function test_home_lists_every_venue_feature(): void
+    {
+        $response = $this->get('/');
+
+        foreach (config('hfh.features') as [$title]) {
+            $response->assertSee($title);
+        }
+    }
+
+    /** @return array<string, array{string}> */
+    public static function newBookingTypes(): array
+    {
+        return ['snooker' => ['snooker'], 'special event' => ['special']];
+    }
+
+    #[DataProvider('newBookingTypes')]
+    public function test_feature_links_preselect_their_booking_type(string $type): void
+    {
+        $this->get('/book?type='.$type)->assertSee('value="'.$type.'" selected', false);
+
+        $this->post('/book', [
+            'name' => 'Test User', 'phone' => '0400 000 000', 'type' => $type,
+            'date' => now()->addWeek()->toDateString(), 'guests' => 4,
+        ])->assertSessionHasNoErrors();
+    }
+
     public function test_floating_buttons_link_to_whatsapp_and_top(): void
     {
         $this->get('/')
