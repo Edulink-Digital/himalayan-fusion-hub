@@ -319,7 +319,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .credit a { display: inline-flex; align-items: center; min-height: 44px; color: #fff; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: 4px; }
 .foot-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .4rem; }
 
-/* ---------- pointer focus: glow, sheen and zoom follow the mouse (set by hfh.js) ---------- */
+/* ---------- pointer focus: glow and sheen follow the mouse (set by hfh.js) ---------- */
 @property --spot { syntax: '<number>'; inherits: false; initial-value: 0; }
 .card { background-image: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgb(219 94 255 / calc(var(--spot) * .16)), transparent 70%); transition: transform .5s var(--ease), border-color .4s, box-shadow .4s, --spot .4s; }
 .card:focus-within { --spot: 1; }
@@ -327,14 +327,9 @@ ul { list-style: none; margin: 0; padding: 0; }
 .fab-btn { position: relative; overflow: hidden; isolation: isolate; }
 .btn:focus-visible::before, .fab-btn:focus-visible::before { opacity: 1; }
 .fab-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-.pic img, .deck .frame img { transition: transform 1s var(--ease); }
-.shot img, .pic img, .event .poster img, .deck .frame img { transform-origin: var(--mx, 50%) var(--my, 50%); }
 @media (hover: hover) and (pointer: fine) {
   .card:hover { --spot: 1; }
   .btn:hover::before, .fab-btn:hover::before { opacity: 1; }
-  .pic:hover img { transform: scale(1.1); }
-  .deck:hover .frame img { transform: scale(1.05); }
-  .shot, .pic, .event .poster, .deck .frame { cursor: zoom-in; }
 }
 
 /* ---------- floating contact buttons (bottom right) ---------- */

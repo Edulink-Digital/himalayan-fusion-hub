@@ -3,9 +3,9 @@
   root.classList.add('js');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // pointer focus: tell cards, buttons and photos where the mouse is so the glow and zoom follow it
+  // pointer focus: tell cards and buttons where the mouse is so the glow and sheen follow it
   if (!reduce && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const targets = '.card, .btn, .fab-btn, .shot, .pic, .event .poster, .deck .frame';
+    const targets = '.card, .btn, .fab-btn';
     let last = null, queued = false;
     const place = () => {
       queued = false;
