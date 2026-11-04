@@ -1,5 +1,5 @@
 @if (session('booked'))
-    <div class="success" role="status">@include('partials.icon', ['name' => 'check-circle'])<div><strong>Request received, {{ session('booked') }}.</strong>We will call you shortly to confirm your booking.</div></div>
+    <div class="success" role="status">@include('partials.icon', ['name' => 'check-circle'])<div><strong>Request received, {{ session('booked') }}.</strong>{{ config('hfh.book_page.form_success') }}</div></div>
 @endif
 @if ($errors->any())
     <div class="success bad" role="alert">@include('partials.icon', ['name' => 'warning-circle'])<div><strong>Check the highlighted fields.</strong>{{ $errors->count() }} {{ Str::plural('thing', $errors->count()) }} need your attention.</div></div>
@@ -30,6 +30,6 @@
         @error('guests')<span class="err" id="guests-err">{{ $message }}</span>@enderror</div>
     <div class="field full"><label for="notes">Write message</label>
         <textarea id="notes" name="notes" placeholder="Birthday, dietary needs, song requests...">{{ old('notes') }}</textarea>
-        <span class="hint">This is a request until we call you back to confirm.</span></div>
-    <button class="btn" type="submit">Send request</button>
+        <span class="hint">{{ config('hfh.book_page.form_hint') }}</span></div>
+    <button class="btn" type="submit">{{ config('hfh.book_page.form_submit') }}</button>
 </form>

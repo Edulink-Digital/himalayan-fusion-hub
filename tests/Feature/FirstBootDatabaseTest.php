@@ -49,6 +49,18 @@ class FirstBootDatabaseTest extends TestCase
         $this->assertTrue(Schema::connection('sqlite')->hasTable('reservations'));
     }
 
+    public function test_existing_database_gets_new_migrations_once(): void
+    {
+        $path = $this->directory.'/database.sqlite';
+        File::ensureDirectoryExists($this->directory);
+        File::put($path, '');
+
+        $this->bootWithDatabaseAt($path, autoMigrate: true);
+
+        $this->assertTrue(Schema::connection('sqlite')->hasTable('site_settings'));
+        $this->assertCount(1, File::glob($this->directory.'/.migrated-*'));
+    }
+
     public function test_nothing_is_created_when_disabled(): void
     {
         $path = $this->directory.'/database.sqlite';

@@ -61,8 +61,8 @@ class SiteTest extends TestCase
     {
         $response = $this->get('/');
 
-        foreach (config('hfh.features') as [$title]) {
-            $response->assertSee($title);
+        foreach (config('hfh.features') as $feature) {
+            $response->assertSee($feature['title']);
         }
     }
 

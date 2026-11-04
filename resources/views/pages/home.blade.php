@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+@php $page = config('hfh.home'); @endphp
 <section class="hero" aria-labelledby="hero-title">
     @include('partials.hero-bg')
     <span class="shape sh-tri" style="left:6%;top:24%" aria-hidden="true"></span>
     <span class="shape sh-line" style="right:34%;top:30%" aria-hidden="true"></span>
     <div class="wrap hero-grid">
         <div>
-            <p class="kicker rv">Unleashing the power of the night</p>
-            <h1 id="hero-title" class="rv" style="--d:1">Discover The Best Night Out In Perth</h1>
-            <p class="lead rv" style="--d:2">A Bhutanese-owned club where Bhutanese, Nepali, Indian and Aussie friends share one dance floor. Great drinks, karaoke, snooker and a DJ who plays for everyone.</p>
+            <p class="kicker rv">{{ $page['hero_kicker'] }}</p>
+            <h1 id="hero-title" class="rv" style="--d:1">{{ $page['hero_title'] }}</h1>
+            <p class="lead rv" style="--d:2">{{ $page['hero_lead'] }}</p>
             <div class="cta-row rv" style="--d:3">
-                <a class="btn" href="{{ route('book') }}">Book a table</a>
-                <a class="btn btn-outline" href="{{ route('book') }}?type=vip">Book VIP</a>
+                <a class="btn" href="{{ route('book') }}">{{ $page['hero_cta'] }}</a>
+                <a class="btn btn-outline" href="{{ route('book') }}?type=vip">{{ $page['hero_cta_secondary'] }}</a>
             </div>
         </div>
         <div class="deck rv" style="--d:2">
@@ -32,13 +33,14 @@
             <span class="shape sh-ring" aria-hidden="true"></span><span class="shape sh-tri" aria-hidden="true"></span>
         </div>
         <div>
-            <div class="title title-l rv"><span class="ghost">About us</span><h2 id="about-title">Bhutanese Owned, Built for Everyone</h2><span class="rule"></span></div>
-            <p class="rv">Himalayan Fusion Hub is a Bhutanese-owned night club bringing Himalayan warmth to Balcatta. Our regulars are Bhutanese, Nepali, Indian and Australian, and the night is built for all of them: songs in Dzongkha, Nepali, Hindi and English, a DJ who moves from Rigsar to Bollywood to the charts, and a team that treats every guest like family.</p>
+            <div class="title title-l rv"><span class="ghost">{{ $page['about_ghost'] }}</span><h2 id="about-title">{{ $page['about_title'] }}</h2><span class="rule"></span></div>
+            <p class="rv">{{ $page['about_text'] }}</p>
             <div class="mini">
-                <div class="card rv" style="--d:1"><h3>VIP Service</h3><span class="rule"></span><p>Private booths, bottle service and a host for your group.</p></div>
-                <div class="card rv" style="--d:2"><h3>Karaoke Rooms</h3><span class="rule"></span><p>Dzongkha, Nepali, Hindi and English songbooks with a full sound system.</p></div>
+                @foreach ($page['about_cards'] as $i => $card)
+                    <div class="card rv" style="--d:{{ $i + 1 }}"><h3>{{ $card['title'] }}</h3><span class="rule"></span><p>{{ $card['text'] }}</p></div>
+                @endforeach
             </div>
-            <a class="btn rv" href="{{ route('events') }}">Read more</a>
+            <a class="btn rv" href="{{ route('events') }}">{{ $page['about_cta'] }}</a>
         </div>
     </div>
 </section>
@@ -47,32 +49,32 @@
     <div class="wrap">
         <div class="ticket rv">
             <span class="shape sh-tri" style="right:5%;bottom:8%" aria-hidden="true"></span>
-            <p class="sale">Doors open soon</p>
-            <h2 id="live-title">Where the party never ends</h2>
-            <p>Fusion Friday is the weekly main event. Dancing, cocktails and a DJ who reads the room.</p>
+            <p class="sale">{{ $page['ticket_label'] }}</p>
+            <h2 id="live-title">{{ $page['ticket_title'] }}</h2>
+            <p>{{ $page['ticket_text'] }}</p>
             @include('partials.countdown')
             <ul class="meta">
-                <li>Day: <strong>Every Friday</strong></li>
-                <li>Doors: <strong>6:30 pm</strong></li>
+                <li>Day: <strong>{{ $page['ticket_day'] }}</strong></li>
+                <li>Doors: <strong>{{ $page['ticket_doors'] }}</strong></li>
                 <li>Typical spend: <strong>{{ config('hfh.price_range') }}</strong></li>
                 <li>Location: <strong>{{ config('hfh.address') }}</strong></li>
             </ul>
-            <a class="btn" href="{{ route('book') }}">Book table</a>
+            <a class="btn" href="{{ route('book') }}">{{ $page['ticket_cta'] }}</a>
         </div>
     </div>
 </section>
 
 <section class="sec" style="padding-top:0" aria-labelledby="services-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Services</span><h2 id="services-title">What We Provide</h2><span class="rule"></span><p>Sing, play, sip and dance: everything for your night out under one roof in Balcatta.</p></div>
+        <div class="title rv"><span class="ghost">{{ $page['services_ghost'] }}</span><h2 id="services-title">{{ $page['services_title'] }}</h2><span class="rule"></span><p>{{ $page['services_text'] }}</p></div>
         <div class="grid-3 features">
-            @foreach (config('hfh.features') as $i => [$title, $icon, $text, $cta, $link])
+            @foreach (config('hfh.features') as $i => $feature)
                 <article class="card service rv" style="--d:{{ $i % 3 }}">
-                    <div class="ico">@include('partials.icon', ['name' => $icon])</div>
+                    <div class="ico">@include('partials.icon', ['name' => $feature['icon']])</div>
                     <div class="service-body">
-                        <h3>{{ $title }}</h3>
-                        <p>{{ $text }}</p>
-                        <a class="service-link" href="{{ url($link) }}">{{ $cta }} <span aria-hidden="true">&rarr;</span></a>
+                        <h3>{{ $feature['title'] }}</h3>
+                        <p>{{ $feature['text'] }}</p>
+                        <a class="service-link" href="{{ url($feature['link']) }}">{{ $feature['cta'] }} <span aria-hidden="true">&rarr;</span></a>
                     </div>
                 </article>
             @endforeach
@@ -82,7 +84,7 @@
 
 <section class="sec" style="padding-top:0" id="gallery" aria-labelledby="gallery-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Photos</span><h2 id="gallery-title">Our Gallery</h2><span class="rule"></span><p>Discover the magic of music, one photo at a time.</p></div>
+        <div class="title rv"><span class="ghost">{{ $page['gallery_ghost'] }}</span><h2 id="gallery-title">{{ $page['gallery_title'] }}</h2><span class="rule"></span><p>{{ $page['gallery_text'] }}</p></div>
         <div class="tabs rv" role="group" aria-label="Filter gallery" data-tabs>
             <button type="button" aria-pressed="true" data-f="all">All</button>
             <button type="button" aria-pressed="false" data-f="Dancing">Dancing</button>
@@ -102,26 +104,26 @@
 
 <section class="sec" style="padding-top:0" aria-labelledby="events-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Events</span><h2 id="events-title">Upcoming Events</h2><span class="rule"></span><p>Celebrate the rhythm, energy and passion, all in one unforgettable night.</p></div>
+        <div class="title rv"><span class="ghost">{{ $page['events_ghost'] }}</span><h2 id="events-title">{{ $page['events_title'] }}</h2><span class="rule"></span><p>{{ $page['events_text'] }}</p></div>
         @include('partials.event-cards', ['limit' => 2])
-        <div class="t-center"><a class="btn btn-outline" href="{{ route('events') }}">View all</a></div>
+        <div class="t-center"><a class="btn btn-outline" href="{{ route('events') }}">{{ $page['events_cta'] }}</a></div>
     </div>
 </section>
 
 <section class="sec" style="padding-top:0" id="book" aria-labelledby="tables-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Tables</span><h2 id="tables-title">Book Your Table</h2><span class="rule"></span><p>Spend less time waiting and more time on the dance floor.</p></div>
+        <div class="title rv"><span class="ghost">{{ $page['booking_ghost'] }}</span><h2 id="tables-title">{{ $page['booking_title'] }}</h2><span class="rule"></span><p>{{ $page['booking_text'] }}</p></div>
         <div class="card home-form rv" style="max-width:900px;margin-inline:auto;padding:2.2rem">
             @include('partials.booking-form')
         </div>
-        <a class="btn book-cta rv" href="{{ route('book') }}">Open the booking form</a>
+        <a class="btn book-cta rv" href="{{ route('book') }}">{{ $page['booking_mobile_cta'] }}</a>
     </div>
 </section>
 
 <section class="sec" style="padding-top:0" aria-labelledby="sub-title">
     <div class="wrap">
         <div class="card subscribe rv">
-            <div><h3 id="sub-title">Questions about tonight? Talk to the team</h3></div>
+            <div><h3 id="sub-title">{{ $page['callout_title'] }}</h3></div>
             <div><a class="btn" href="tel:{{ config('hfh.phone_href') }}">@include('partials.icon', ['name' => 'phone']) Call {{ config('hfh.phone') }}</a></div>
         </div>
     </div>
@@ -129,18 +131,18 @@
 
 <section class="sec" style="padding-top:0" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
-        <div class="title rv"><span class="ghost">Contact</span><h2 id="contact-title">Get In Touch</h2><span class="rule"></span></div>
+        <div class="title rv"><span class="ghost">{{ $page['contact_ghost'] }}</span><h2 id="contact-title">{{ $page['contact_title'] }}</h2><span class="rule"></span></div>
         <div class="contact">
-            <div class="card rv"><h3>Address</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'map-pin'])<p><a href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">{{ config('hfh.address') }}</a></p></div></div></div>
-            <div class="card rv" style="--d:1"><h3>Call Us</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'phone'])<p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div></div></div>
-            <div class="card rv" style="--d:2"><h3>Opening Hours</h3><span class="rule"></span>
+            <div class="card rv"><h3>{{ $page['contact_address_label'] }}</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'map-pin'])<p><a href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">{{ config('hfh.address') }}</a></p></div></div></div>
+            <div class="card rv" style="--d:1"><h3>{{ $page['contact_call_label'] }}</h3><span class="rule"></span><div class="info"><div>@include('partials.icon', ['name' => 'phone'])<p><a href="tel:{{ config('hfh.phone_href') }}">{{ config('hfh.phone') }}</a></p></div></div></div>
+            <div class="card rv" style="--d:2"><h3>{{ $page['contact_hours_label'] }}</h3><span class="rule"></span>
                 <ul class="hours-list">@foreach (config('hfh.hours') as $h)<li @class(['on' => $h['live']])><strong>{{ $h['day'] }}</strong><span>{{ $h['time'] }}</span></li>@endforeach</ul>
             </div>
         </div>
         <a class="btn btn-outline map-open rv" href="{{ config('hfh.maps_link') }}" target="_blank" rel="noopener">@include('partials.icon', ['name' => 'map-pin']) Open in Google Maps</a>
         <div class="map rv" data-map="{{ config('hfh.maps_embed') }}">
             <button class="map-load" type="button" data-map-load>@include('partials.icon', ['name' => 'map-pin'])<span>Show the map</span><small>{{ config('hfh.address') }}</small></button>
-            <noscript><iframe title="Map to Himalayan Fusion Hub" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ config('hfh.maps_embed') }}"></iframe></noscript>
+            <noscript><iframe title="Map to {{ config('hfh.name') }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="{{ config('hfh.maps_embed') }}"></iframe></noscript>
         </div>
     </div>
 </section>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en-AU">
+@php $theme = array_key_exists(config('hfh.theme'), config('hfh.themes')) ? config('hfh.theme') : 'midnight'; @endphp
+<html lang="en-AU" data-theme="{{ $theme }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>@yield('title', 'Himalayan Fusion Hub | Night Club in Balcatta, Perth')</title>
-    <meta name="description" content="@yield('description', 'Himalayan Fusion Hub is a Bhutanese-owned night club in Balcatta, Perth, loved by Bhutanese, Nepali, Indian and Australian crowds. Karaoke, snooker, a full bar, DJ nights and festival events.')">
-    <meta name="theme-color" content="#0a0820">
-    <meta property="og:title" content="Himalayan Fusion Hub | Perth Night Club">
-    <meta property="og:description" content="Bhutanese-owned night club in Balcatta, Perth: karaoke, snooker, cocktails, DJ nights and festival events.">
+    <title>@yield('title', config('hfh.seo.title'))</title>
+    <meta name="description" content="@yield('description', config('hfh.seo.description'))">
+    <meta name="theme-color" content="{{ ['midnight' => '#0a0820', 'disco' => '#08080c', 'vice' => '#0b0f1e'][$theme] }}">
+    <meta property="og:title" content="{{ config('hfh.name') }} | Perth Night Club">
+    <meta property="og:description" content="{{ config('hfh.seo.share_description') }}">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +18,7 @@
     {!! json_encode([
         '@context' => 'https://schema.org', '@type' => 'NightClub', 'name' => config('hfh.name'),
         'telephone' => config('hfh.phone_href'), 'priceRange' => '$$',
-        'address' => ['@type' => 'PostalAddress', 'streetAddress' => 'Unit 2/98 Erindale Rd', 'addressLocality' => 'Balcatta', 'addressRegion' => 'WA', 'postalCode' => '6021', 'addressCountry' => 'AU'],
+        'address' => ['@type' => 'PostalAddress', 'streetAddress' => config('hfh.address_lines.0'), 'addressLocality' => config('hfh.address_lines.1'), 'addressCountry' => 'AU'],
     ], JSON_UNESCAPED_SLASHES) !!}
     </script>
 </head>

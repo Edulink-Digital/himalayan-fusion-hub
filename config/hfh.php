@@ -1,7 +1,9 @@
 <?php
 
 /*
- * Single source of truth for venue facts and page content.
+ * Default venue facts and page content. Everything editable in the admin panel
+ * (/admin > Site content) starts from these values; saved edits live in the
+ * site_settings table and override the matching top-level key at boot.
  * Items marked CONFIRM are placeholders the owner should verify before launch.
  */
 return [
@@ -9,6 +11,18 @@ return [
 
     // Hosts with an empty disk (Wasmer Edge volume) create and migrate the SQLite file on first boot.
     'auto_migrate' => env('HFH_AUTO_MIGRATE', false),
+
+    // First admin login, created on boot when no users exist and both are set (e.g. Wasmer secrets).
+    'admin_email' => env('ADMIN_EMAIL'),
+    'admin_password' => env('ADMIN_PASSWORD'),
+
+    // Colour theme: one of the keys in 'themes'. Changed in the admin panel.
+    'theme' => 'midnight',
+    'themes' => [
+        'midnight' => 'Midnight (violet and blue)',
+        'disco' => 'Disco Ball (magenta, cyan and gold)',
+        'vice' => 'Vice City (sunset pink and neon cyan)',
+    ],
 
     'short' => 'HFH',
     'tagline' => 'A Bhutanese-owned night club in Perth for Bhutanese, Nepali, Indian and Australian crowds.',
@@ -40,6 +54,94 @@ return [
         ['label' => 'Contact', 'route' => 'home', 'url' => '/#contact'],
     ],
 
+    'seo' => [
+        'title' => 'Himalayan Fusion Hub | Night Club in Balcatta, Perth',
+        'description' => 'Himalayan Fusion Hub is a Bhutanese-owned night club in Balcatta, Perth, loved by Bhutanese, Nepali, Indian and Australian crowds. Karaoke, snooker, a full bar, DJ nights and festival events.',
+        'share_description' => 'Bhutanese-owned night club in Balcatta, Perth: karaoke, snooker, cocktails, DJ nights and festival events.',
+    ],
+
+    'home' => [
+        'hero_kicker' => 'Unleashing the power of the night',
+        'hero_title' => 'Discover The Best Night Out In Perth',
+        'hero_lead' => 'A Bhutanese-owned club where Bhutanese, Nepali, Indian and Aussie friends share one dance floor. Great drinks, karaoke, snooker and a DJ who plays for everyone.',
+        'hero_cta' => 'Book a table',
+        'hero_cta_secondary' => 'Book VIP',
+
+        'about_ghost' => 'About us',
+        'about_title' => 'Bhutanese Owned, Built for Everyone',
+        'about_text' => 'Himalayan Fusion Hub is a Bhutanese-owned night club bringing Himalayan warmth to Balcatta. Our regulars are Bhutanese, Nepali, Indian and Australian, and the night is built for all of them: songs in Dzongkha, Nepali, Hindi and English, a DJ who moves from Rigsar to Bollywood to the charts, and a team that treats every guest like family.',
+        'about_cards' => [
+            ['title' => 'VIP Service', 'text' => 'Private booths, bottle service and a host for your group.'],
+            ['title' => 'Karaoke Rooms', 'text' => 'Dzongkha, Nepali, Hindi and English songbooks with a full sound system.'],
+        ],
+        'about_cta' => 'Read more',
+
+        'ticket_label' => 'Doors open soon',
+        'ticket_title' => 'Where the party never ends',
+        'ticket_text' => 'Fusion Friday is the weekly main event. Dancing, cocktails and a DJ who reads the room.',
+        'ticket_day' => 'Every Friday',
+        'ticket_doors' => '6:30 pm',
+        'ticket_cta' => 'Book table',
+
+        'services_ghost' => 'Services',
+        'services_title' => 'What We Provide',
+        'services_text' => 'Sing, play, sip and dance: everything for your night out under one roof in Balcatta.',
+
+        'gallery_ghost' => 'Photos',
+        'gallery_title' => 'Our Gallery',
+        'gallery_text' => 'Discover the magic of music, one photo at a time.',
+
+        'events_ghost' => 'Events',
+        'events_title' => 'Upcoming Events',
+        'events_text' => 'Celebrate the rhythm, energy and passion, all in one unforgettable night.',
+        'events_cta' => 'View all',
+
+        'booking_ghost' => 'Tables',
+        'booking_title' => 'Book Your Table',
+        'booking_text' => 'Spend less time waiting and more time on the dance floor.',
+        'booking_mobile_cta' => 'Open the booking form',
+
+        'callout_title' => 'Questions about tonight? Talk to the team',
+
+        'contact_ghost' => 'Contact',
+        'contact_title' => 'Get In Touch',
+        'contact_address_label' => 'Address',
+        'contact_call_label' => 'Call Us',
+        'contact_hours_label' => 'Opening Hours',
+    ],
+
+    'events_page' => [
+        'meta_title' => 'Events & Nights | Himalayan Fusion Hub Perth',
+        'meta_description' => 'Fusion Fridays, festival nights, the karaoke lounge and private hire at Bhutanese-owned Himalayan Fusion Hub, Balcatta WA.',
+        'title' => 'Upcoming Events',
+        'text' => 'From the Friday dance floor to private karaoke rooms.',
+        'faq_ghost' => 'FAQ',
+        'faq_title' => 'Good to Know',
+    ],
+
+    'menu_page' => [
+        'meta_title' => 'Cocktails & Bites Menu | Himalayan Fusion Hub Perth',
+        'meta_description' => 'Signature Himalayan cocktails, classics and shareable bites at Himalayan Fusion Hub, Balcatta.',
+        'title' => 'Our Menu',
+        'text' => 'Cocktails with Himalayan flavour and bites made for sharing. Prices at the bar.',
+        'cta' => 'Book a table',
+    ],
+
+    'book_page' => [
+        'meta_title' => 'Book a Table or Private Hire | Himalayan Fusion Hub Perth',
+        'meta_description' => 'Reserve a table, VIP booth, birthday or karaoke room at Himalayan Fusion Hub in Balcatta, Perth.',
+        'title' => 'Book Your Table',
+        'text' => 'Send a request and we will call to confirm.',
+        'side_title' => 'Prefer to call?',
+        'form_hint' => 'This is a request until we call you back to confirm.',
+        'form_submit' => 'Send request',
+        'form_success' => 'We will call you shortly to confirm your booking.',
+    ],
+
+    'footer' => [
+        'note' => 'Please drink responsibly. 18+ only, ID required.',
+    ],
+
     // Photos: Unsplash License (free to use). Sources listed in public/images/CREDITS.md.
     'gallery' => [
         ['Dancing', 'Dance floor', '700/900', 'gal-dance-1', 'Friends dancing with their hands up on a night out'],
@@ -65,47 +167,39 @@ return [
 
     /*
      * What the venue offers, shown as cards on the home page.
-     * Each: [title, icon, description, link label, link (relative URL)].
      * CONFIRM: wording for snooker, the festival list and the Dzongkha songbook.
      */
     'features' => [
-        ['Karaoke', 'microphone-stage', 'Private karaoke rooms and a main stage with Dzongkha, Nepali, Hindi and English songbooks. Grab the mic and own the room.', 'Book karaoke', '/book?type=karaoke'],
-        ['Snooker', 'snooker', 'Snooker tables for a relaxed frame with friends, before or between rounds on the dance floor.', 'Book a snooker table', '/book?type=snooker'],
-        ['Bar', 'martini', 'Himalayan-spiced cocktails, cold beers and heavy-handed pours from a fully stocked bar.', 'See the menu', '/menu'],
-        ['DJ', 'vinyl-record', 'Our DJ moves from Bhutanese Rigsar and Nepali hits to Bollywood and Aussie party anthems, with lights that follow every drop.', 'See the nights', '/events'],
-        ['Organised Events', 'confetti', 'Festival nights for Losar, Dashain, Tihar and Diwali, plus themed parties and live shows hosted by our team.', 'Upcoming events', '/events'],
-        ['Pre-Booking', 'calendar-check', 'Lock in your table, booth or package before festival nights and special events sell out.', 'Pre-book now', '/book?type=special'],
+        ['title' => 'Karaoke', 'icon' => 'microphone-stage', 'text' => 'Private karaoke rooms and a main stage with Dzongkha, Nepali, Hindi and English songbooks. Grab the mic and own the room.', 'cta' => 'Book karaoke', 'link' => '/book?type=karaoke'],
+        ['title' => 'Snooker', 'icon' => 'snooker', 'text' => 'Snooker tables for a relaxed frame with friends, before or between rounds on the dance floor.', 'cta' => 'Book a snooker table', 'link' => '/book?type=snooker'],
+        ['title' => 'Bar', 'icon' => 'martini', 'text' => 'Himalayan-spiced cocktails, cold beers and heavy-handed pours from a fully stocked bar.', 'cta' => 'See the menu', 'link' => '/menu'],
+        ['title' => 'DJ', 'icon' => 'vinyl-record', 'text' => 'Our DJ moves from Bhutanese Rigsar and Nepali hits to Bollywood and Aussie party anthems, with lights that follow every drop.', 'cta' => 'See the nights', 'link' => '/events'],
+        ['title' => 'Organised Events', 'icon' => 'confetti', 'text' => 'Festival nights for Losar, Dashain, Tihar and Diwali, plus themed parties and live shows hosted by our team.', 'cta' => 'Upcoming events', 'link' => '/events'],
+        ['title' => 'Pre-Booking', 'icon' => 'calendar-check', 'text' => 'Lock in your table, booth or package before festival nights and special events sell out.', 'cta' => 'Pre-book now', 'link' => '/book?type=special'],
     ],
 
     // CONFIRM: nights are indicative formats, not a published calendar.
     'nights' => [
         [
-            'slug' => 'fusion-friday',
             'title' => 'Fusion Friday',
             'when' => 'Fridays from 6:30 pm',
             'blurb' => 'Bhutanese and Nepali hits, Bollywood bangers and Aussie party anthems, blended by the DJ until late. Dress sharp, dance harder.',
-            'tone' => 'magenta',
-            'tag' => 'Dancing',
             'book' => 'table',
             'count' => true,
         ],
         [
-            'slug' => 'karaoke-nights',
             'title' => 'Karaoke Lounge',
             'when' => 'Book a private room or take the stage',
             'blurb' => 'Dzongkha, Nepali, Hindi and English songbooks, a proper sound system and a crowd that cheers every note.',
-            'tone' => 'gold',
-            'tag' => 'Karaoke',
             'book' => 'karaoke',
+            'count' => false,
         ],
         [
-            'slug' => 'private-hire',
             'title' => 'Private Hire',
             'when' => 'Birthdays, farewells, corporate nights',
             'blurb' => 'Take over the floor with your own guest list, menu and playlist. We handle the lights.',
-            'tone' => 'violet',
-            'tag' => 'Functions',
             'book' => 'private',
+            'count' => false,
         ],
     ],
 
@@ -114,42 +208,42 @@ return [
             'group' => 'Signature Cocktails',
             'note' => 'Shaken with Himalayan flavours.',
             'items' => [
-                ['Everest Sunrise', 'Vodka, passionfruit, chilli-honey, lime, saffron mist', 'sig'],
-                ['Kathmandu Mule', 'Ginger, timur pepper, lime, ginger beer, mint', 'sig'],
-                ['Yak & Yeti', 'Dark rum, chai syrup, bitters, orange peel', 'sig'],
-                ['Himal Spritz', 'Aperol, elderflower, prosecco, soda', ''],
-                ['Mango Lassi Martini', 'Vodka, mango, yoghurt cream, cardamom', ''],
-                ['Rhododendron Sour', 'Gin, rhododendron cordial, lemon, egg white', ''],
+                ['name' => 'Everest Sunrise', 'description' => 'Vodka, passionfruit, chilli-honey, lime, saffron mist', 'house_pick' => true],
+                ['name' => 'Kathmandu Mule', 'description' => 'Ginger, timur pepper, lime, ginger beer, mint', 'house_pick' => true],
+                ['name' => 'Yak & Yeti', 'description' => 'Dark rum, chai syrup, bitters, orange peel', 'house_pick' => true],
+                ['name' => 'Himal Spritz', 'description' => 'Aperol, elderflower, prosecco, soda', 'house_pick' => false],
+                ['name' => 'Mango Lassi Martini', 'description' => 'Vodka, mango, yoghurt cream, cardamom', 'house_pick' => false],
+                ['name' => 'Rhododendron Sour', 'description' => 'Gin, rhododendron cordial, lemon, egg white', 'house_pick' => false],
             ],
         ],
         [
             'group' => 'Classics',
             'note' => 'Done properly.',
             'items' => [
-                ['Espresso Martini', 'Vodka, coffee liqueur, fresh espresso', ''],
-                ['Margarita', 'Tequila, triple sec, lime, salt rim', ''],
-                ['Old Fashioned', 'Bourbon, bitters, sugar, orange', ''],
-                ['Mojito', 'White rum, mint, lime, soda', ''],
+                ['name' => 'Espresso Martini', 'description' => 'Vodka, coffee liqueur, fresh espresso', 'house_pick' => false],
+                ['name' => 'Margarita', 'description' => 'Tequila, triple sec, lime, salt rim', 'house_pick' => false],
+                ['name' => 'Old Fashioned', 'description' => 'Bourbon, bitters, sugar, orange', 'house_pick' => false],
+                ['name' => 'Mojito', 'description' => 'White rum, mint, lime, soda', 'house_pick' => false],
             ],
         ],
         [
             'group' => 'Bites to Share',
             'note' => 'Built for the table.',
             'items' => [
-                ['Chicken Momo', 'Steamed or fried, with tomato achar', 'sig'],
-                ['Chilli Paneer', 'Wok-tossed peppers, spring onion', ''],
-                ['Sekuwa Skewers', 'Charcoal-grilled, house marinade', ''],
-                ['Loaded Fries', 'Masala dust, cheese, mint chutney', ''],
+                ['name' => 'Chicken Momo', 'description' => 'Steamed or fried, with tomato achar', 'house_pick' => true],
+                ['name' => 'Chilli Paneer', 'description' => 'Wok-tossed peppers, spring onion', 'house_pick' => false],
+                ['name' => 'Sekuwa Skewers', 'description' => 'Charcoal-grilled, house marinade', 'house_pick' => false],
+                ['name' => 'Loaded Fries', 'description' => 'Masala dust, cheese, mint chutney', 'house_pick' => false],
             ],
         ],
     ],
 
     'faq' => [
-        ['Who comes to Himalayan Fusion Hub?', 'We are Bhutanese-owned, and our regulars are Bhutanese, Nepali, Indian and Australian. Everyone 18+ is welcome.'],
-        ['Is there an entry fee?', 'Spend usually lands between $20 and $100 per person depending on your night. Call us for door details on event nights.'],
-        ['Can I book a snooker table?', 'Yes. Choose "Snooker table" on the booking page, or ask at the bar on the night.'],
-        ['Can I book a private room for karaoke?', 'Yes. Send a booking request with your group size and we will confirm by phone.'],
-        ['Do you take group and birthday bookings?', 'Yes. Pick the occasion on the booking page and tell us what you need.'],
-        ['How do I get there?', 'We are at Unit 2/98 Erindale Rd, Balcatta, just off the main road with parking nearby.'],
+        ['question' => 'Who comes to Himalayan Fusion Hub?', 'answer' => 'We are Bhutanese-owned, and our regulars are Bhutanese, Nepali, Indian and Australian. Everyone 18+ is welcome.'],
+        ['question' => 'Is there an entry fee?', 'answer' => 'Spend usually lands between $20 and $100 per person depending on your night. Call us for door details on event nights.'],
+        ['question' => 'Can I book a snooker table?', 'answer' => 'Yes. Choose "Snooker table" on the booking page, or ask at the bar on the night.'],
+        ['question' => 'Can I book a private room for karaoke?', 'answer' => 'Yes. Send a booking request with your group size and we will confirm by phone.'],
+        ['question' => 'Do you take group and birthday bookings?', 'answer' => 'Yes. Pick the occasion on the booking page and tell us what you need.'],
+        ['question' => 'How do I get there?', 'answer' => 'We are at Unit 2/98 Erindale Rd, Balcatta, just off the main road with parking nearby.'],
     ],
 ];

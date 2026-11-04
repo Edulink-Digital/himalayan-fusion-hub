@@ -8,7 +8,7 @@
             <div class="ev-meta">
                 <span>@include('partials.icon', ['name' => 'calendar-blank']){{ $n['when'] }}</span>
                 <span>@include('partials.icon', ['name' => 'ticket']){{ config('hfh.price_range') }}</span>
-                <span>@include('partials.icon', ['name' => 'map-pin'])Balcatta, Perth</span>
+                <span>@include('partials.icon', ['name' => 'map-pin']){{ config('hfh.address_lines.1', 'Balcatta, Perth') }}</span>
             </div>
             <a class="btn btn-sm" href="{{ route('book') }}?type={{ $n['book'] }}">Book now</a>
         </div>

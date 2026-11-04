@@ -1,0 +1,29 @@
+# Files kept out of the Wasmer Edge upload (gitignore syntax).
+# Never upload local secrets, local data or development-only folders.
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+/database/*.sqlite
+/storage/logs/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/framework/cache/*
+/storage/framework/testing/*
+/storage/app/*
+/bootstrap/cache/config.php
+/bootstrap/cache/routes-*.php
+
+.git
+/node_modules
+/tests
+/.claude
+/.ai
+/.taste-skill
+/.idea
+/.vscode
+/public/hot
+/public/storage
+.phpunit.result.cache
+*.log

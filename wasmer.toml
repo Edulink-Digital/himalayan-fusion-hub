@@ -1,20 +1,13 @@
 # Wasmer Edge package for temporary hosting.
-# Only the folders Laravel needs at runtime are mapped (no node_modules, .git, tests or skills).
-# storage/ and the local SQLite file are left out; writable data (views cache, SQLite bookings)
-# lives on the /data volume declared in app.yaml.
+# The whole project is mapped so Laravel finds composer.json; .wasmerignore keeps out .env,
+# local databases, logs, node_modules, .git, tests and skills. Writable data (views cache,
+# SQLite bookings and site content) lives on the /data volume declared in app.yaml.
 
 [dependencies]
 "php/php" = "=8.3.403"
 
 [fs]
-"/app/app" = "app"
-"/app/bootstrap" = "bootstrap"
-"/app/config" = "config"
-"/app/database/migrations" = "database/migrations"
-"/app/public" = "public"
-"/app/resources" = "resources"
-"/app/routes" = "routes"
-"/app/vendor" = "vendor"
+"/app" = "."
 
 [[command]]
 name = "run"
