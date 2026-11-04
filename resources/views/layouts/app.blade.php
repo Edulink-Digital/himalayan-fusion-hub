@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/hfh.css') }}?v={{ filemtime(public_path('css/hfh.css')) }}">
     <script type="application/ld+json">
     {!! json_encode([
-        '@context' => 'https://schema.org', '@type' => 'NightClub', 'name' => config('hfh.name'),
+        '@'.'context' => 'https://schema.org', '@type' => 'NightClub', 'name' => config('hfh.name'),
         'telephone' => config('hfh.phone_href'), 'priceRange' => '$$',
         'address' => ['@type' => 'PostalAddress', 'streetAddress' => config('hfh.address_lines.0'), 'addressLocality' => config('hfh.address_lines.1'), 'addressCountry' => 'AU'],
     ], JSON_UNESCAPED_SLASHES) !!}

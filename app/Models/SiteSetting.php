@@ -19,7 +19,7 @@ class SiteSetting extends Model
      */
     public const EDITABLE_KEYS = [
         'theme', 'name', 'tagline', 'phone', 'phone_href', 'whatsapp', 'email', 'address', 'address_lines',
-        'maps_link', 'maps_embed', 'price_range', 'hours', 'seo', 'home', 'events_page', 'menu_page',
+        'maps_link', 'maps_embed', 'price_range', 'socials', 'hours', 'seo', 'home', 'events_page', 'menu_page',
         'book_page', 'footer', 'features', 'nights', 'menu', 'faq',
     ];
 

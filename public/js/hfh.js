@@ -46,6 +46,30 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
   }
 
+  // expandable header search: first click opens it, a second click searches (or closes it when empty)
+  const search = document.querySelector('[data-search]');
+  if (search) {
+    const input = search.querySelector('input');
+    const toggle = search.querySelector('[data-search-toggle]');
+    const setOpen = (open) => {
+      search.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Search' : 'Open search');
+      input.tabIndex = open ? 0 : -1;
+      if (open) input.focus();
+    };
+    setOpen(false);
+    toggle.addEventListener('click', () => {
+      if (!search.classList.contains('open')) setOpen(true);
+      else if (input.value.trim()) search.submit();
+      else setOpen(false);
+    });
+    input.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); toggle.focus(); } });
+    document.addEventListener('click', (e) => {
+      if (!search.contains(e.target) && !input.value.trim()) setOpen(false);
+    });
+  }
+
   // reveal on enter
   const items = document.querySelectorAll('.rv');
   if ('IntersectionObserver' in window && !reduce) {

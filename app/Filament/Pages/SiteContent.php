@@ -148,6 +148,14 @@ class SiteContent extends Page
                             ->columnSpanFull(),
                         TextInput::make('price_range')->label('Typical spend')->maxLength(80),
                     ]),
+                Section::make('Social links')
+                    ->description('Shown in the top bar and the mobile menu. Leave one empty to hide it.')
+                    ->columns(3)
+                    ->schema([
+                        TextInput::make('socials.facebook')->label('Facebook')->url()->maxLength(255),
+                        TextInput::make('socials.instagram')->label('Instagram')->url()->maxLength(255),
+                        TextInput::make('socials.tiktok')->label('TikTok')->url()->maxLength(255),
+                    ]),
                 Section::make('Opening hours')
                     ->schema([
                         Repeater::make('hours')

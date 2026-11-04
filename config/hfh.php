@@ -37,6 +37,14 @@ return [
     'maps_link' => 'https://www.google.com/maps/search/?api=1&query=Himalayan+Fusion+Hub+98+Erindale+Rd+Balcatta+WA',
     'price_range' => '$20 - $100 per person',
 
+    // Top-bar social links. Empty ones are hidden.
+    // CONFIRM: placeholders open each platform's search; replace with the club's real pages in the admin panel.
+    'socials' => [
+        'facebook' => 'https://www.facebook.com/search/top?q=Himalayan%20Fusion%20Hub',
+        'instagram' => 'https://www.instagram.com/explore/search/keyword/?q=Himalayan%20Fusion%20Hub',
+        'tiktok' => 'https://www.tiktok.com/search?q=Himalayan%20Fusion%20Hub',
+    ],
+
     // CONFIRM: only Friday opening (6:30 pm) is confirmed from the Google listing.
     'hours' => [
         ['day' => 'Friday', 'time' => 'Opens 6:30 pm', 'live' => true],

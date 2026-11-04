@@ -57,6 +57,16 @@ class SiteTest extends TestCase
         $this->get('/book?type=vip')->assertSee('value="vip" selected', false);
     }
 
+    public function test_structured_data_is_valid_json(): void
+    {
+        preg_match('#<script type="application/ld\+json">(.*?)</script>#s', $this->get('/')->getContent(), $match);
+
+        $data = json_decode($match[1] ?? '', true);
+
+        $this->assertSame('https://schema.org', $data['@context'] ?? null);
+        $this->assertSame('NightClub', $data['@type'] ?? null);
+    }
+
     public function test_home_lists_every_venue_feature(): void
     {
         $response = $this->get('/');
