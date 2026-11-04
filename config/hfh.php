@@ -7,7 +7,7 @@
 return [
     'name' => 'Himalayan Fusion Hub',
     'short' => 'HFH',
-    'tagline' => 'Perth\'s after-dark home for cocktails, karaoke and dancing.',
+    'tagline' => 'A Bhutanese-owned night club in Perth for Bhutanese, Nepali, Indian and Australian crowds.',
     'address' => 'Unit 2/98 Erindale Rd, Balcatta WA 6021',
     'address_lines' => ['Unit 2/98 Erindale Rd', 'Balcatta WA 6021'],
     'phone' => '0493 964 334',
@@ -62,15 +62,15 @@ return [
     /*
      * What the venue offers, shown as cards on the home page.
      * Each: [title, icon, description, link label, link (relative URL)].
-     * CONFIRM: wording for snooker and organised events.
+     * CONFIRM: wording for snooker, the festival list and the Dzongkha songbook.
      */
     'features' => [
-        ['Karaoke', 'microphone-stage', 'Private karaoke rooms and a main stage with Hindi, Nepali and English songbooks. Grab the mic and own the room.', 'Book karaoke', '/book?type=karaoke'],
+        ['Karaoke', 'microphone-stage', 'Private karaoke rooms and a main stage with Dzongkha, Nepali, Hindi and English songbooks. Grab the mic and own the room.', 'Book karaoke', '/book?type=karaoke'],
         ['Snooker', 'snooker', 'Snooker tables for a relaxed frame with friends, before or between rounds on the dance floor.', 'Book a snooker table', '/book?type=snooker'],
         ['Bar', 'martini', 'Himalayan-spiced cocktails, cold beers and heavy-handed pours from a fully stocked bar.', 'See the menu', '/menu'],
-        ['DJ', 'vinyl-record', 'Our DJ blends Bollywood, Nepali pop, Afrobeats and house, with lights that follow every drop.', 'See the nights', '/events'],
-        ['Organised Events', 'confetti', 'Themed nights, cultural celebrations and live shows, planned and hosted by our team.', 'Upcoming events', '/events'],
-        ['Pre-Booking', 'calendar-check', 'Lock in your table, booth or package before special events and festival nights sell out.', 'Pre-book now', '/book?type=special'],
+        ['DJ', 'vinyl-record', 'Our DJ moves from Bhutanese Rigsar and Nepali hits to Bollywood and Aussie party anthems, with lights that follow every drop.', 'See the nights', '/events'],
+        ['Organised Events', 'confetti', 'Festival nights for Losar, Dashain, Tihar and Diwali, plus themed parties and live shows hosted by our team.', 'Upcoming events', '/events'],
+        ['Pre-Booking', 'calendar-check', 'Lock in your table, booth or package before festival nights and special events sell out.', 'Pre-book now', '/book?type=special'],
     ],
 
     // CONFIRM: nights are indicative formats, not a published calendar.
@@ -79,7 +79,7 @@ return [
             'slug' => 'fusion-friday',
             'title' => 'Fusion Friday',
             'when' => 'Fridays from 6:30 pm',
-            'blurb' => 'Bollywood, Nepali pop, Afrobeats and house, blended by the DJ until late. Dress sharp, dance harder.',
+            'blurb' => 'Bhutanese and Nepali hits, Bollywood bangers and Aussie party anthems, blended by the DJ until late. Dress sharp, dance harder.',
             'tone' => 'magenta',
             'tag' => 'Dancing',
             'book' => 'table',
@@ -89,7 +89,7 @@ return [
             'slug' => 'karaoke-nights',
             'title' => 'Karaoke Lounge',
             'when' => 'Book a private room or take the stage',
-            'blurb' => 'Hindi, Nepali and English songbooks, a proper sound system and a crowd that cheers every note.',
+            'blurb' => 'Dzongkha, Nepali, Hindi and English songbooks, a proper sound system and a crowd that cheers every note.',
             'tone' => 'gold',
             'tag' => 'Karaoke',
             'book' => 'karaoke',
@@ -141,6 +141,7 @@ return [
     ],
 
     'faq' => [
+        ['Who comes to Himalayan Fusion Hub?', 'We are Bhutanese-owned, and our regulars are Bhutanese, Nepali, Indian and Australian. Everyone 18+ is welcome.'],
         ['Is there an entry fee?', 'Spend usually lands between $20 and $100 per person depending on your night. Call us for door details on event nights.'],
         ['Can I book a snooker table?', 'Yes. Choose "Snooker table" on the booking page, or ask at the bar on the night.'],
         ['Can I book a private room for karaoke?', 'Yes. Send a booking request with your group size and we will confirm by phone.'],

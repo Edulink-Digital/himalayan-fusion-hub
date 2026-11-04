@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Events & Nights | Himalayan Fusion Hub Perth')
-@section('description', 'Fusion Fridays, karaoke lounge and private hire at Himalayan Fusion Hub, Balcatta WA.')
+@section('description', 'Fusion Fridays, festival nights, the karaoke lounge and private hire at Bhutanese-owned Himalayan Fusion Hub, Balcatta WA.')
 @section('content')
 <section class="page-hero">
     @include('partials.hero-bg')

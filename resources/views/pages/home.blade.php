@@ -9,7 +9,7 @@
         <div>
             <p class="kicker rv">Unleashing the power of the night</p>
             <h1 id="hero-title" class="rv" style="--d:1">Discover The Best Night Out In Perth</h1>
-            <p class="lead rv" style="--d:2">Join us for great cocktails, karaoke and dancing. The beats are loud, the vibes are high and the night is unforgettable.</p>
+            <p class="lead rv" style="--d:2">A Bhutanese-owned club where Bhutanese, Nepali, Indian and Aussie friends share one dance floor. Great drinks, karaoke, snooker and a DJ who plays for everyone.</p>
             <div class="cta-row rv" style="--d:3">
                 <a class="btn" href="{{ route('book') }}">Book a table</a>
                 <a class="btn btn-outline" href="{{ route('book') }}?type=vip">Book VIP</a>
@@ -32,11 +32,11 @@
             <span class="shape sh-ring" aria-hidden="true"></span><span class="shape sh-tri" aria-hidden="true"></span>
         </div>
         <div>
-            <div class="title title-l rv"><span class="ghost">About us</span><h2 id="about-title">We are The Best in The Field</h2><span class="rule"></span></div>
-            <p class="rv">Himalayan Fusion Hub blends the energy of Kathmandu nights with the polish of a Perth club. Whether you are here to dance with friends, take the mic or simply lose yourself in the rhythm, the night is built to deliver.</p>
+            <div class="title title-l rv"><span class="ghost">About us</span><h2 id="about-title">Bhutanese Owned, Built for Everyone</h2><span class="rule"></span></div>
+            <p class="rv">Himalayan Fusion Hub is a Bhutanese-owned night club bringing Himalayan warmth to Balcatta. Our regulars are Bhutanese, Nepali, Indian and Australian, and the night is built for all of them: songs in Dzongkha, Nepali, Hindi and English, a DJ who moves from Rigsar to Bollywood to the charts, and a team that treats every guest like family.</p>
             <div class="mini">
                 <div class="card rv" style="--d:1"><h3>VIP Service</h3><span class="rule"></span><p>Private booths, bottle service and a host for your group.</p></div>
-                <div class="card rv" style="--d:2"><h3>Karaoke Rooms</h3><span class="rule"></span><p>Hindi, Nepali and English songbooks with a full sound system.</p></div>
+                <div class="card rv" style="--d:2"><h3>Karaoke Rooms</h3><span class="rule"></span><p>Dzongkha, Nepali, Hindi and English songbooks with a full sound system.</p></div>
             </div>
             <a class="btn rv" href="{{ route('events') }}">Read more</a>
         </div>
