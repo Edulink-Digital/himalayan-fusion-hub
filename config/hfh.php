@@ -6,6 +6,10 @@
  */
 return [
     'name' => 'Himalayan Fusion Hub',
+
+    // Hosts with an empty disk (Wasmer Edge volume) create and migrate the SQLite file on first boot.
+    'auto_migrate' => env('HFH_AUTO_MIGRATE', false),
+
     'short' => 'HFH',
     'tagline' => 'A Bhutanese-owned night club in Perth for Bhutanese, Nepali, Indian and Australian crowds.',
     'address' => 'Unit 2/98 Erindale Rd, Balcatta WA 6021',

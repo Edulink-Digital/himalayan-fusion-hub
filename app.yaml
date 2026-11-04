@@ -1,0 +1,21 @@
+# Wasmer Edge app (temporary hosting). APP_KEY is stored as a Wasmer secret, not here.
+kind: wasmer.io/App.v0
+package: .
+env:
+  APP_NAME: Himalayan Fusion Hub
+  APP_ENV: production
+  APP_DEBUG: "false"
+  LOG_CHANNEL: stderr
+  SESSION_DRIVER: cookie
+  CACHE_STORE: array
+  QUEUE_CONNECTION: sync
+  VIEW_COMPILED_PATH: /data/views
+  DB_CONNECTION: sqlite
+  DB_DATABASE: /data/database.sqlite
+  HFH_AUTO_MIGRATE: "true"
+volumes:
+  - name: data
+    mount: /data
+name: himalayan-fusion-hub
+owner: moktan456
+app_id: da_2yGI9trUx4g4
