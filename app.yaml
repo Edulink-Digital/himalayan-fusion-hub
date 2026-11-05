@@ -12,7 +12,12 @@ env:
   VIEW_COMPILED_PATH: /data/views
   DB_CONNECTION: sqlite
   DB_DATABASE: /data/database.sqlite
+  # Several instances share the SQLite file on /data: wait up to 5 s for a lock instead of failing.
+  DB_BUSY_TIMEOUT: "5000"
   HFH_AUTO_MIGRATE: "true"
+# PHP's built-in server is single-threaded; one request per instance avoids queued and clashing requests.
+scaling:
+  mode: single_concurrency
 volumes:
   - name: data
     mount: /data

@@ -8,10 +8,10 @@ Unit 2/98 Erindale Rd, Balcatta WA 6021 (Perth). Built by Edulink Digital.
 - **Wasmer dashboard:** https://wasmer.io/apps/moktan456/himalayan-fusion-hub (account `moktan456`)
 - **Repository:** https://github.com/Edulink-Digital/himalayan-fusion-hub (branch `main`)
 
-## 1. Open issue: read this first
+## 1. Known issue: SQLite locking on Wasmer (fixed, keep an eye on it)
 
-**Admin pages freeze on the live site (Bookings, then navigating away).** Root cause is confirmed
-from the live logs (4 Nov 2026, 08:45:57 UTC):
+**Admin pages froze on the live site (Bookings, then navigating away).** Root cause confirmed from
+the live logs (4 Nov 2026, 08:45:57 UTC):
 
 ```
 production.ERROR: SQLSTATE[HY000]: General error: 5 database is locked
@@ -27,16 +27,21 @@ Wasmer's own docs warn that volumes are "not yet well suited to databases"
 (https://docs.wasmer.io/edge/configuration). It does **not** reproduce locally, even with the live
 settings, because locally there is only one PHP process.
 
-Fix options, not yet chosen:
+**Applied (4 Nov 2026): SQLite with single concurrency.** `app.yaml` now sets
+`scaling.mode: single_concurrency` (one request per instance) and `DB_BUSY_TIMEOUT: "5000"`, which
+`config/database.php` passes to SQLite so a locked read waits up to 5 s instead of failing.
+Guarded by `tests/Feature/WasmerServerTest.php`. After deploying, 24 simultaneous public requests
+all returned 200 with no lock errors (Wasmer started 7 instances; first requests on a new instance
+can take ~12 s). The owner confirmed on 5 Nov 2026 that moving between admin pages on live works,
+with no errors in the live log. Locks between instances can still happen under heavier write load.
+
+If it recurs, the remaining options are:
 
 1. **Move the database to Wasmer's managed MySQL** (`capabilities.database` in `app.yaml`).
    This is the proper fix. Wasmer injects `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USERNAME`,
    `DB_PASSWORD`; set `DB_CONNECTION=mysql` and map those names in `config/database.php` or env.
    May need a paid Wasmer plan and a region that supports databases.
-2. **Stay on SQLite but reduce clashes:** set `scaling.mode: single_concurrency` in `app.yaml`
-   (one request per instance) and give the SQLite connection a `busy_timeout` (e.g. 5000 ms) so
-   reads wait instead of failing. Cheaper, but locks between instances can still happen.
-3. **Move off Wasmer** to a normal PHP host (Laravel Cloud, Forge/VPS, cPanel). This also removes
+2. **Move off Wasmer** to a normal PHP host (Laravel Cloud, Forge/VPS, cPanel). This also removes
    the PHP 8.3 limit described below.
 
 Steps to reproduce on live: sign in to `/admin`, click **Bookings**, then **Dashboard**. Watch logs
@@ -169,7 +174,7 @@ Marked `CONFIRM` in `config/hfh.php`, editable in the admin panel:
 
 ## 8. Not done / ideas
 
-- Fix the database lock (section 1).
+- Move off SQLite-on-a-volume (managed MySQL or another host) if locking returns (section 1).
 - Gallery photo uploads in the admin (deferred: needs reliable file storage).
 - Email/SMS notification when a booking arrives (bookings currently only appear in the admin).
 - Permanent hosting with a real domain, HTTPS on that domain and backups.
